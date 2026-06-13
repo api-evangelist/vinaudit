@@ -1,0 +1,88 @@
+name: VINaudit API Plans and Pricing
+description: Pricing plans and tiers for VINaudit vehicle data APIs. VINaudit offers
+  pay-per-report and subscription-based pricing with modular licensing allowing customers
+  to license only the specific data APIs they need.
+specificationVersion: '0.1'
+url: https://www.vinaudit.com/affordable-vs-premium-vehicle-history-api
+plans:
+  - name: Consumer Report Packages
+    description: Individual vehicle history report packages for consumers, with per-report
+      pricing decreasing with volume.
+    type: pay-per-use
+    pricing:
+      - description: Single report
+        amount: 2.99
+        currency: USD
+        unit: per report
+      - description: 5-report package
+        amount: 2.99
+        currency: USD
+        unit: per report
+      - description: 10-report package
+        amount: 2.49
+        currency: USD
+        unit: per report
+  - name: Dealer Subscription
+    description: Monthly subscription plan for auto dealers with unlimited NMVTIS-authorized
+      report access via web and mobile. Provides 24/7 instant online access to full
+      vehicle history reports.
+    type: subscription
+    pricing:
+      - description: Monthly subscription fee
+        amount: 20.00
+        currency: USD
+        unit: per month
+      - description: Per report charge
+        amount: 1.00
+        currency: USD
+        unit: per report
+    features:
+      - 24/7 instant online access
+      - Mobile access
+      - NMVTIS-authorized reports
+      - Title history
+      - Odometer records
+      - Junk and salvage records
+  - name: API Pay-Per-Report
+    description: Pay-per-report API access for businesses and developers integrating
+      vehicle history data. Pricing starts around $1 per report and decreases at
+      higher volumes.
+    type: pay-per-use
+    pricing:
+      - description: Standard volume rate
+        amount: 1.00
+        currency: USD
+        unit: per report
+      - description: High-volume rate
+        amount: 0.25
+        currency: USD
+        unit: per report
+        notes: Available at high volume thresholds; contact for details
+    features:
+      - JSON/XML/PDF output formats
+      - HTTPS secure requests
+      - API key authentication
+      - NMVTIS-approved data
+      - US and Canada coverage
+  - name: API Enterprise/Custom
+    description: Custom enterprise API plans with modular licensing for specific data
+      products including Vehicle History, Specifications, Market Value, Ownership
+      Cost, and Vehicle Images. White-label branding available.
+    type: custom
+    pricing:
+      - description: Custom quote based on volume and data products
+        notes: Contact VINaudit sales for enterprise pricing
+    features:
+      - Modular API licensing
+      - Vehicle History API
+      - Vehicle Specifications API
+      - Vehicle Market Value API
+      - Vehicle Ownership Cost API
+      - Vehicle Image API (Beta)
+      - White-label branding option
+      - Real-time data updates
+      - Dedicated support
+notes:
+  - Pricing details not fully published; contact VINaudit for current API plan rates
+  - Demo/trial accounts available on request
+  - contact: https://www.vinaudit.com/vehicle-data-api

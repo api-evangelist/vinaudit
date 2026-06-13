@@ -1,0 +1,94 @@
+name: VINaudit API FinOps
+description: FinOps Framework FOCUS-aligned cost and usage tracking guidance for
+  VINaudit vehicle data API consumption. Covers cost allocation, optimization, and
+  governance for teams integrating VINaudit APIs into automotive applications.
+specificationVersion: '1.0'
+framework: FinOps Framework
+alignment: FOCUS 1.0
+url: https://www.vinaudit.com/affordable-vs-premium-vehicle-history-api
+provider:
+  name: VINaudit
+  url: https://www.vinaudit.com
+  billingModel: pay-per-report and subscription
+costAllocation:
+  - dimension: API Product
+    description: Costs should be tracked per VINaudit API product used, as each is
+      licensed separately under modular pricing.
+    products:
+      - name: Vehicle History API
+        billingUnit: per report
+        baseRate: '$1.00 per report (standard volume)'
+        highVolumeRate: '$0.25 per report (high volume)'
+      - name: Vehicle Specifications API
+        billingUnit: per query
+        notes: Contact VINaudit for per-query pricing
+      - name: Vehicle Market Value API
+        billingUnit: per query
+        notes: Contact VINaudit for per-query pricing
+      - name: Vehicle Ownership Cost API
+        billingUnit: per query
+        notes: Contact VINaudit for per-query pricing
+      - name: Vehicle Image API (Beta)
+        billingUnit: per query
+        notes: Beta pricing; contact VINaudit for details
+  - dimension: Environment
+    description: Separate cost tracking for production vs. sandbox/demo environments.
+      Demo key (VA_DEMO_KEY) incurs no cost.
+    environments:
+      - name: Production
+        key: API key from members dashboard
+        billable: true
+      - name: Sandbox/Demo
+        key: VA_DEMO_KEY
+        billable: false
+  - dimension: Report Uniqueness
+    description: Vehicle History API charges only once per unique report ID. Implement
+      caching of report IDs to avoid re-billing for the same VIN lookup within a
+      session or time window.
+    optimization: Cache report IDs and reuse within billing period
+optimization:
+  - name: Volume Tier Negotiation
+    description: Pricing drops from approximately $1.00 to $0.25 per report at high
+      volumes. Forecast monthly lookup volumes to negotiate the appropriate tier.
+    action: Project monthly VIN lookup volume and negotiate tier pricing accordingly
+  - name: Modular API Licensing
+    description: VINaudit offers modular licensing, meaning you only pay for the
+      specific APIs you use. Audit which data products are actually needed to avoid
+      paying for unused API modules.
+    action: Audit API usage and disable unused API modules
+  - name: Report ID Caching
+    description: Since the Vehicle History API bills at most once per unique report
+      ID, implement application-level caching of report results to avoid redundant
+      API calls for the same VIN.
+    action: Cache VIN lookup results to minimize redundant report generations
+  - name: Dealer Subscription vs Pay-Per-Report
+    description: For use cases with predictable monthly report volumes, the $20/month
+      dealer subscription plus $1/report may be more cost-effective than ad-hoc
+      API billing at the same rate.
+    action: Compare monthly projected volume against subscription plan cost
+governance:
+  - name: API Key Management
+    description: Rotate API keys periodically and restrict key usage to production
+      systems only. Use the demo key for development and testing environments.
+    policy: One API key per deployment environment; never embed keys in client-side code
+  - name: Budget Alerting
+    description: Set monthly budget thresholds aligned to expected report volumes.
+      Alert when consumption exceeds 80% of the monthly budget.
+    threshold: 80% of monthly budget triggers alert
+  - name: Usage Reporting
+    description: Monitor usage through the VINaudit members dashboard. Export usage
+      data monthly for reconciliation against invoices.
+    cadence: monthly
+    source: VINaudit members dashboard
+  - name: Cost Attribution
+    description: Tag API usage by application, team, or product line to enable chargeback
+      or showback reporting for internal cost allocation.
+    tags:
+      - application
+      - team
+      - environment
+notes:
+  - VINaudit does not publicly publish a detailed pricing page; work with their sales
+    team to establish a usage-based contract with volume commitments
+  - contact: https://www.vinaudit.com/vehicle-data-api
+  - phone: 1-800-480-4428

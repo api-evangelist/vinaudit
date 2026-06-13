@@ -1,0 +1,70 @@
+name: VINaudit API Rate Limits
+description: Rate limit policies for VINaudit vehicle data APIs. VINaudit uses an
+  account-based billing model where each unique report ID is billed at most once.
+  Specific rate limit thresholds are not publicly disclosed and are configured per
+  account type.
+specificationVersion: '0.1'
+url: https://www.vinaudit.com/vin-api-developers-guide
+limits:
+  - name: API Key Authentication
+    description: All API requests require a valid API key passed as the key parameter.
+      Rate limiting and usage tracking are enforced at the API key level.
+    scope: per-key
+    enforcement: API key required in all requests
+  - name: Unique Report Billing
+    description: The Vehicle History API billing model ensures each unique report
+      ID is billed at most once, preventing duplicate charges for repeated lookups
+      of the same report.
+    scope: per-report
+    notes: Applies to Vehicle History API report generation endpoint
+  - name: Demo Key Limits
+    description: A demo API key (VA_DEMO_KEY) is available for testing. Demo keys
+      have restricted access and return sample data only.
+    scope: per-key
+    type: sandbox
+    demoKey: VA_DEMO_KEY
+  - name: Commercial Volume Tiers
+    description: Commercial API accounts are provisioned with volume tiers based on
+      the pricing plan selected. Higher-volume plans unlock lower per-report costs
+      starting around $1 per report down to approximately $0.25 per report at high
+      volume.
+    scope: per-account
+    tiers:
+      - name: Standard
+        notes: Approximately $1.00 per report
+      - name: High Volume
+        notes: Approximately $0.25 per report; threshold undisclosed
+  - name: Response Formats
+    description: API supports JSON, XML, and PDF response formats. Format is specified
+      via the format request parameter.
+    formats:
+      - json
+      - xml
+      - pdf
+authentication:
+  type: API Key
+  parameterName: key
+  location: query parameter
+  notes: API key generated from VINaudit members dashboard after account registration
+endpoints:
+  - name: VIN Query
+    url: https://api.vinaudit.com/v2/query
+    method: GET
+  - name: Generate Vehicle History Report
+    url: https://api.vinaudit.com/v2/pullreport
+    method: GET
+  - name: View Generated Report
+    url: https://api.vinaudit.com/v2/report
+    method: GET
+  - name: Vehicle Specifications
+    url: https://specifications.vinaudit.com/v3/specifications
+    method: GET
+  - name: Vehicle Selections
+    url: https://specifications.vinaudit.com/v3/selections
+    method: GET
+notes:
+  - Specific rate limit thresholds (requests per minute/hour/day) are not publicly
+    disclosed
+  - Contact VINaudit at 1-800-480-4428 or via the API portal for account-specific
+    rate limit configuration
+  - contact: https://www.vinaudit.com/vehicle-data-api

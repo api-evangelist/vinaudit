@@ -1,0 +1,29 @@
+{
+  "description": "Example response from VINaudit /v2/query endpoint for a Toyota Corolla VIN lookup",
+  "request": {
+    "method": "GET",
+    "url": "https://api.vinaudit.com/v2/query",
+    "parameters": {
+      "vin": "1VXBR12EXCP901214",
+      "key": "YOUR_API_KEY_HERE",
+      "user": "va",
+      "pass": "test",
+      "format": "json"
+    }
+  },
+  "response": {
+    "vin": "1VXBR12EXCP901214",
+    "id": "S41149125266",
+    "attributes": {
+      "make": "TOYOTA",
+      "model": "COROLLA CE",
+      "year": "2005",
+      "engine": "1.8L L4 DOHC 16V",
+      "style": "Sedan",
+      "made_in": "USA",
+      "type": "Car"
+    },
+    "success": true,
+    "error": ""
+  }
+}

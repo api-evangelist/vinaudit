@@ -1,0 +1,485 @@
+openapi: 3.0.3
+info:
+  title: VINaudit Vehicle Specifications API
+  description: >-
+    Retrieve standardized vehicle specifications by VIN or year/make/model/trim
+    including engine details, transmission, fuel economy, dimensions, colors,
+    equipment, NHTSA recalls, warranties, and vehicle photos. Supports lookup
+    by VIN, vehicle ID, or year/make/model/trim combination.
+  version: '3.0'
+  contact:
+    name: VINaudit Support
+    url: https://www.vinaudit.com/vehicle-data-api
+  license:
+    name: Commercial
+    url: https://www.vinaudit.com/vehicle-specifications-api
+servers:
+  - url: https://specifications.vinaudit.com/v3
+    description: VINaudit Vehicle Specifications API v3
+paths:
+  /specifications:
+    get:
+      operationId: getVehicleSpecifications
+      summary: Get Vehicle Specifications
+      description: >-
+        Retrieve standardized vehicle specifications. Supports three lookup
+        methods: by VIN, by vehicle ID string, or by year/make/model/trim
+        (YMMT). Use the include parameter to filter which data sections are
+        returned.
+      parameters:
+        - name: key
+          in: query
+          required: true
+          description: API authentication key
+          schema:
+            type: string
+            example: YOUR_API_KEY_HERE
+        - name: vin
+          in: query
+          required: false
+          description: >-
+            17-character Vehicle Identification Number. Required if not
+            providing id or YMMT parameters.
+          schema:
+            type: string
+            example: 1NXBR32E85Z505904
+        - name: id
+          in: query
+          required: false
+          description: >-
+            Vehicle ID string in year_make_model_trim format. Required if not
+            providing vin or YMMT parameters.
+          schema:
+            type: string
+            example: 2004_toyota_corolla_ce
+        - name: year
+          in: query
+          required: false
+          description: Vehicle model year. Required for YMMT lookup.
+          schema:
+            type: integer
+            example: 2004
+        - name: make
+          in: query
+          required: false
+          description: Vehicle make (lowercase). Required for YMMT lookup.
+          schema:
+            type: string
+            example: toyota
+        - name: model
+          in: query
+          required: false
+          description: Vehicle model (lowercase). Required for YMMT lookup.
+          schema:
+            type: string
+            example: corolla
+        - name: trim
+          in: query
+          required: false
+          description: Vehicle trim level (lowercase). Optional for YMMT lookup.
+          schema:
+            type: string
+            example: ce
+        - name: include
+          in: query
+          required: false
+          description: >-
+            Comma-separated list of data sections to include in response.
+            If omitted, all sections are returned.
+          schema:
+            type: string
+            example: selections,attributes,equipment,colors,recalls,warranties,photos
+        - name: format
+          in: query
+          required: false
+          description: Response format
+          schema:
+            type: string
+            enum:
+              - json
+              - xml
+            default: json
+      responses:
+        '200':
+          description: Vehicle specifications response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpecificationsResponse'
+              example:
+                input:
+                  key: YOUR_API_KEY_HERE
+                  year: '2005'
+                  make: toyota
+                  model: corolla
+                  trim: ce
+                  format: json
+                selections:
+                  trims:
+                    - id: 2005_toyota_corolla_ce
+                      name: CE
+                      selected: 1
+                      styles: []
+                attributes:
+                  year: '2005'
+                  make: Toyota
+                  model: Corolla
+                  trim: CE
+                  type: Car
+                  engine: 1.8-L L-4 DOHC 16V
+                  fuel_type: Regular Unleaded
+                success: true
+                error: ''
+  /selections:
+    get:
+      operationId: getVehicleSelections
+      summary: Get Vehicle Selections
+      description: >-
+        Retrieve lists of available years, makes, models, and trims. Supports
+        filtering by providing partial YMMT parameters. Use the list parameter
+        to control how many hierarchy levels are returned. Use the collection
+        parameter to filter by market status.
+      parameters:
+        - name: key
+          in: query
+          required: true
+          description: API authentication key
+          schema:
+            type: string
+            example: YOUR_API_KEY_HERE
+        - name: list
+          in: query
+          required: false
+          description: >-
+            Controls which YMMT hierarchy levels to return. Can be year,
+            year+make, year+make+model, or year+make+model+trim.
+          schema:
+            type: string
+            example: year+make+model
+        - name: id
+          in: query
+          required: false
+          description: Vehicle ID to filter selections
+          schema:
+            type: string
+            example: 2013_subaru_outback
+        - name: year
+          in: query
+          required: false
+          description: Filter by year
+          schema:
+            type: integer
+            example: 2013
+        - name: make
+          in: query
+          required: false
+          description: Filter by make
+          schema:
+            type: string
+            example: subaru
+        - name: model
+          in: query
+          required: false
+          description: Filter by model
+          schema:
+            type: string
+            example: outback
+        - name: trim
+          in: query
+          required: false
+          description: Filter by trim
+          schema:
+            type: string
+            example: base
+        - name: style
+          in: query
+          required: false
+          description: Filter by body style
+          schema:
+            type: string
+            example: wagon
+        - name: collection
+          in: query
+          required: false
+          description: Filter by market availability
+          schema:
+            type: string
+            enum:
+              - in-market
+              - popular
+              - all
+        - name: format
+          in: query
+          required: false
+          description: Response format
+          schema:
+            type: string
+            enum:
+              - json
+              - xml
+              - csv
+            default: json
+      responses:
+        '200':
+          description: Vehicle selections response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SelectionsResponse'
+              example:
+                selections:
+                  years:
+                    - name: 2013
+                      id: '2013'
+                      makes:
+                        - name: Subaru
+                          id: 2013_subaru
+                          models:
+                            - name: Outback
+                              id: 2013_subaru_outback
+                              trims:
+                                - name: 2.5i
+                                  id: 2013_subaru_outback_25i
+                                - name: Base
+                                  id: 2013_subaru_outback_base
+components:
+  schemas:
+    VehicleSpecAttributes:
+      type: object
+      description: Standardized vehicle specification attributes
+      properties:
+        year:
+          type: string
+          description: Model year
+          example: '2005'
+        make:
+          type: string
+          description: Vehicle make
+          example: Toyota
+        model:
+          type: string
+          description: Vehicle model
+          example: Corolla
+        trim:
+          type: string
+          description: Trim level
+          example: CE
+        style:
+          type: string
+          description: Body style
+        type:
+          type: string
+          description: Vehicle type classification
+          example: Car
+        size:
+          type: string
+          description: Vehicle size category
+        doors:
+          type: integer
+          description: Number of doors
+        fuel_type:
+          type: string
+          description: Fuel type
+          example: Regular Unleaded
+        mpg_city:
+          type: number
+          description: City fuel economy in miles per gallon
+        mpg_highway:
+          type: number
+          description: Highway fuel economy in miles per gallon
+        engine:
+          type: string
+          description: Engine specification string
+          example: 1.8-L L-4 DOHC 16V
+        transmission:
+          type: string
+          description: Transmission type
+        drivetrain:
+          type: string
+          description: Drivetrain type (FWD, RWD, AWD, 4WD)
+        weight:
+          type: number
+          description: Curb weight in pounds
+        msrp:
+          type: number
+          description: Manufacturer suggested retail price
+    TrimSelection:
+      type: object
+      description: A trim level selection entry
+      properties:
+        id:
+          type: string
+          description: Trim identifier
+          example: 2005_toyota_corolla_ce
+        name:
+          type: string
+          description: Trim name
+          example: CE
+        selected:
+          type: integer
+          description: Whether this trim is selected (1=yes, 0=no)
+        styles:
+          type: array
+          description: Body style variations for this trim
+          items:
+            type: object
+    RecallItem:
+      type: object
+      description: An NHTSA recall record
+      properties:
+        id:
+          type: string
+          description: Recall identifier
+        date:
+          type: string
+          format: date
+          description: Recall date
+        component:
+          type: string
+          description: Affected vehicle component
+        description:
+          type: string
+          description: Recall description
+        remedy:
+          type: string
+          description: Recall remedy
+    WarrantyItem:
+      type: object
+      description: A vehicle warranty
+      properties:
+        type:
+          type: string
+          description: Warranty type (basic, powertrain, corrosion, etc.)
+        miles:
+          type: integer
+          description: Warranty mileage limit
+        months:
+          type: integer
+          description: Warranty time limit in months
+    SpecificationsResponse:
+      type: object
+      description: Vehicle specifications API response
+      properties:
+        input:
+          type: object
+          description: Input parameters echoed back
+        selections:
+          type: object
+          description: Available trim and style selections
+          properties:
+            trims:
+              type: array
+              items:
+                $ref: '#/components/schemas/TrimSelection'
+        attributes:
+          $ref: '#/components/schemas/VehicleSpecAttributes'
+        colors:
+          type: array
+          description: Available color options
+          items:
+            type: object
+        equipment:
+          type: array
+          description: Equipment items with availability status
+          items:
+            type: object
+        recalls:
+          type: array
+          description: NHTSA recall records
+          items:
+            $ref: '#/components/schemas/RecallItem'
+        warranties:
+          type: array
+          description: Manufacturer warranty details
+          items:
+            $ref: '#/components/schemas/WarrantyItem'
+        photos:
+          type: array
+          description: Vehicle image URLs
+          items:
+            type: string
+            format: uri
+        success:
+          type: boolean
+          description: Whether specifications data was found
+        error:
+          type: string
+          description: Error code or empty string
+          enum:
+            - ''
+            - invalid_inputs
+            - invalid_vin
+            - no_data
+            - api_not_enabled
+    YearEntry:
+      type: object
+      properties:
+        name:
+          type: integer
+          description: Model year number
+        id:
+          type: string
+          description: Year identifier
+        makes:
+          type: array
+          items:
+            $ref: '#/components/schemas/MakeEntry'
+    MakeEntry:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Make name
+        id:
+          type: string
+          description: Make identifier
+        models:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModelEntry'
+    ModelEntry:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Model name
+        id:
+          type: string
+          description: Model identifier
+        trims:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrimEntry'
+    TrimEntry:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Trim name
+        id:
+          type: string
+          description: Trim identifier
+    SelectionsResponse:
+      type: object
+      description: Vehicle selections API response
+      properties:
+        selections:
+          type: object
+          description: Available vehicle selections
+          properties:
+            years:
+              type: array
+              items:
+                $ref: '#/components/schemas/YearEntry'
+            makes:
+              type: array
+              items:
+                $ref: '#/components/schemas/MakeEntry'
+            models:
+              type: array
+              items:
+                $ref: '#/components/schemas/ModelEntry'
+            trims:
+              type: array
+              items:
+                $ref: '#/components/schemas/TrimEntry'

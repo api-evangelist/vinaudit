@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/vinaudit/main/json-schema/vinaudit-vehicle-specifications-schema.json",
+  "title": "VINaudit Vehicle Specifications",
+  "description": "JSON Schema for the VINaudit Vehicle Specifications API response, covering engine, transmission, dimensions, fuel economy, colors, equipment, recalls, warranties, and photos.",
+  "type": "object",
+  "properties": {
+    "input": {
+      "type": "object",
+      "description": "Input parameters echoed back in response"
+    },
+    "selections": {
+      "type": "object",
+      "description": "Available trim and style selections",
+      "properties": {
+        "trims": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "selected": { "type": "integer", "enum": [0, 1] },
+              "styles": { "type": "array", "items": { "type": "object" } }
+            }
+          }
+        }
+      }
+    },
+    "attributes": {
+      "type": "object",
+      "description": "Standardized vehicle specification attributes",
+      "properties": {
+        "year": { "type": "string", "pattern": "^[0-9]{4}$" },
+        "make": { "type": "string" },
+        "model": { "type": "string" },
+        "trim": { "type": "string" },
+        "style": { "type": "string" },
+        "type": { "type": "string" },
+        "size": { "type": "string" },
+        "doors": { "type": "integer", "minimum": 2 },
+        "fuel_type": { "type": "string" },
+        "mpg_city": { "type": "number", "minimum": 0 },
+        "mpg_highway": { "type": "number", "minimum": 0 },
+        "engine": { "type": "string" },
+        "transmission": { "type": "string" },
+        "drivetrain": {
+          "type": "string",
+          "enum": ["FWD", "RWD", "AWD", "4WD", "4x4"]
+        },
+        "weight": { "type": "number", "minimum": 0 },
+        "msrp": { "type": "number", "minimum": 0 }
+      }
+    },
+    "colors": {
+      "type": "array",
+      "description": "Available color options",
+      "items": { "type": "object" }
+    },
+    "equipment": {
+      "type": "array",
+      "description": "Equipment items with availability status",
+      "items": { "type": "object" }
+    },
+    "recalls": {
+      "type": "array",
+      "description": "NHTSA recall records",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "date": { "type": "string" },
+          "component": { "type": "string" },
+          "description": { "type": "string" },
+          "remedy": { "type": "string" }
+        }
+      }
+    },
+    "warranties": {
+      "type": "array",
+      "description": "Manufacturer warranty details",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string" },
+          "miles": { "type": "integer", "minimum": 0 },
+          "months": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "photos": {
+      "type": "array",
+      "description": "Vehicle image URLs",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "success": {
+      "type": "boolean",
+      "description": "Whether specifications data was found"
+    },
+    "error": {
+      "type": "string",
+      "description": "Error code or empty string",
+      "enum": ["", "invalid_inputs", "invalid_vin", "no_data", "api_not_enabled"]
+    }
+  },
+  "required": ["success"]
+}

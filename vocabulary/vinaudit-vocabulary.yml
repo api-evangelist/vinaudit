@@ -1,0 +1,175 @@
+name: VINaudit API Vocabulary
+description: >-
+  Domain vocabulary for VINaudit APIs covering vehicle history, specifications,
+  market value, and ownership cost data. Terms reflect NMVTIS data standards
+  and automotive industry conventions.
+version: '1.0'
+created: '2026-06-13'
+terms:
+  - term: vin
+    label: Vehicle Identification Number
+    description: >-
+      A unique 17-character alphanumeric code assigned to every motor vehicle
+      when it is manufactured. Used to identify individual vehicles and access
+      records across all VINaudit APIs.
+    type: string
+    pattern: '^[A-HJ-NPR-Z0-9]{17}$'
+    example: 1VXBR12EXCP901214
+
+  - term: nmvtis
+    label: National Motor Vehicle Title Information System
+    description: >-
+      A national database that provides title information, brands, and records
+      for vehicles. VINaudit is an NMVTIS-approved data provider. Agencies
+      report to NMVTIS when vehicles are designated as junk, salvage, or
+      insurance total losses.
+    type: concept
+
+  - term: title_record
+    label: Title Record
+    description: >-
+      An official record of vehicle ownership registered with a state DMV.
+      Contains the date the title was issued, the state, odometer reading,
+      and any title brands.
+    type: object
+    fields:
+      - date: Date the title was issued
+      - state: Two-letter US state code
+      - odometer: Odometer reading at time of title
+      - brand: Title brand designation if any
+
+  - term: title_brand
+    label: Title Brand
+    description: >-
+      A designation added to a vehicle's title indicating a significant event
+      such as salvage, flood damage, fire damage, hail damage, odometer rollback,
+      or lemon law buyback.
+    type: string
+    examples:
+      - salvage
+      - flood
+      - fire
+      - hail
+      - odometer rollback
+      - lemon
+
+  - term: jsi
+    label: Junk/Salvage/Insurance Record
+    description: >-
+      Records from junk yards, salvage yards, and insurance companies indicating
+      the vehicle was declared a total loss, junked, or salvaged.
+    type: object
+
+  - term: lie
+    label: Lien/Impound/Export Record
+    description: >-
+      Records of outstanding liens (loans secured by the vehicle), impoundment
+      events, or export documentation.
+    type: object
+
+  - term: clean
+    label: Clean Vehicle Status
+    description: >-
+      A boolean indicator that a vehicle has no title brands, salvage records,
+      or insurance total loss designations in the NMVTIS database.
+    type: boolean
+
+  - term: ymmt
+    label: Year/Make/Model/Trim
+    description: >-
+      A vehicle identification tuple using year, make, model, and trim level.
+      Used as an alternative to VIN for specifications and market value lookups.
+      Encoded as a string ID in the format year_make_model_trim.
+    type: string
+    example: 2014_toyota_corolla_s
+
+  - term: market_value
+    label: Market Value
+    description: >-
+      An estimate of a vehicle's current fair market price based on aggregated
+      recent sale listing data. VINaudit returns below-market, average, and
+      above-market price estimates along with a statistical certainty score.
+    type: object
+    fields:
+      - mean: Average market price estimate
+      - stdev: Standard deviation of prices in dataset
+      - certainty: Statistical confidence percentage (0-100)
+      - count: Number of sale listings used in calculation
+
+  - term: certainty
+    label: Statistical Certainty Score
+    description: >-
+      A percentage (0-100) indicating the statistical confidence of a market
+      value estimate. Higher values indicate more comparable sale listings were
+      found for the vehicle configuration.
+    type: integer
+    minimum: 0
+    maximum: 100
+
+  - term: total_cost_of_ownership
+    label: Total Cost of Ownership (TCO)
+    description: >-
+      The projected cumulative cost to own and operate a vehicle over a 5-year
+      period. Includes depreciation, insurance premiums, fuel, routine
+      maintenance, unscheduled repairs, and state registration fees and taxes.
+    type: number
+
+  - term: depreciation_cost
+    label: Depreciation Cost
+    description: >-
+      The estimated annual loss in vehicle value due to age and mileage
+      accumulation, calculated as part of the 5-year total cost of ownership.
+    type: array
+
+  - term: recall
+    label: NHTSA Recall
+    description: >-
+      A safety recall issued by the National Highway Traffic Safety Administration
+      (NHTSA) requiring manufacturers to repair or replace a defective component
+      at no cost to the vehicle owner.
+    type: object
+    fields:
+      - id: NHTSA recall campaign identifier
+      - component: Affected vehicle system or component
+      - description: Description of the safety defect
+      - remedy: Required repair or replacement action
+
+  - term: warranty
+    label: Manufacturer Warranty
+    description: >-
+      A manufacturer's guarantee to repair or replace defective components
+      within specified mileage and time limits. Common types include basic
+      (bumper-to-bumper), powertrain, corrosion, and roadside assistance.
+    type: object
+    fields:
+      - type: Warranty category (basic, powertrain, corrosion, etc.)
+      - miles: Coverage mileage limit
+      - months: Coverage time limit in months
+
+  - term: valuation_type
+    label: Valuation Type
+    description: >-
+      The market segment used for vehicle valuation. Retail reflects private
+      party or dealer sale prices. Wholesale reflects auction or dealer-to-dealer
+      prices. Trade-in reflects amounts offered by dealers for a vehicle purchase.
+    type: string
+    enum:
+      - retail
+      - wholesale
+      - tradein
+
+  - term: mileage_adjustment
+    label: Mileage Adjustment
+    description: >-
+      A dollar adjustment applied to a vehicle's base market value based on
+      how the vehicle's actual mileage compares to the average mileage for
+      comparable vehicles in the dataset.
+    type: number
+
+  - term: ownership_period
+    label: Data Collection Period
+    description: >-
+      The date range from which sale listing data was aggregated to produce
+      a market value estimate. Represented as a two-element array of ISO 8601
+      date strings (start date, end date).
+    type: array

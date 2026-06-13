@@ -1,0 +1,50 @@
+{
+  "description": "Example response from VINaudit /v2/marketvalue endpoint for a 2014 Toyota Corolla S retail valuation",
+  "request": {
+    "method": "GET",
+    "url": "https://marketvalue.vinaudit.com/v2/marketvalue",
+    "parameters": {
+      "key": "YOUR_API_KEY_HERE",
+      "vin": "2T1BURHE3EC020936",
+      "format": "json",
+      "type": "retail"
+    }
+  },
+  "response": {
+    "vin": "2T1BURHE3EC020936",
+    "success": true,
+    "id": "2014_toyota_corolla_s",
+    "vehicle": "2014 Toyota Corolla S",
+    "mean": 10882.53,
+    "stdev": 2396,
+    "count": 255,
+    "mileage": 129598,
+    "certainty": 99,
+    "period": ["2025-08-17", "2025-10-06"],
+    "prices": {
+      "above": 13279.11,
+      "average": 10882.53,
+      "below": 8485.95
+    },
+    "adjustments": {
+      "mileage": {
+        "adjustment": 0,
+        "average": 129598.16,
+        "input": 129598.16
+      },
+      "history": {
+        "records": [],
+        "adjustment": 0
+      },
+      "condition": {
+        "input": null,
+        "adjustment": 0
+      },
+      "known_damage": {
+        "input": null,
+        "adjustment": 0
+      }
+    },
+    "type": "retail"
+  }
+}

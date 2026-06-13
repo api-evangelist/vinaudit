@@ -1,0 +1,275 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "vinaudit": "https://www.vinaudit.com/vocab#",
+
+    "vin": {
+      "@id": "vinaudit:vin",
+      "@type": "xsd:string",
+      "rdfs:label": "Vehicle Identification Number",
+      "rdfs:comment": "A unique 17-character alphanumeric code assigned to every motor vehicle at manufacture."
+    },
+
+    "id": {
+      "@id": "vinaudit:vehicleId",
+      "@type": "xsd:string",
+      "rdfs:label": "Vehicle ID",
+      "rdfs:comment": "Year/make/model/trim identifier in the format year_make_model_trim."
+    },
+
+    "vehicle": {
+      "@id": "schema:name",
+      "@type": "xsd:string",
+      "rdfs:label": "Vehicle Name",
+      "rdfs:comment": "Full vehicle description combining year, make, model, and trim."
+    },
+
+    "make": {
+      "@id": "schema:vehicleConfiguration",
+      "@type": "xsd:string",
+      "rdfs:label": "Vehicle Make"
+    },
+
+    "model": {
+      "@id": "schema:model",
+      "@type": "xsd:string",
+      "rdfs:label": "Vehicle Model"
+    },
+
+    "year": {
+      "@id": "schema:vehicleModelDate",
+      "@type": "xsd:string",
+      "rdfs:label": "Model Year"
+    },
+
+    "trim": {
+      "@id": "vinaudit:trim",
+      "@type": "xsd:string",
+      "rdfs:label": "Trim Level"
+    },
+
+    "engine": {
+      "@id": "schema:engineSpecification",
+      "@type": "xsd:string",
+      "rdfs:label": "Engine Specification"
+    },
+
+    "fuel_type": {
+      "@id": "schema:fuelType",
+      "@type": "xsd:string",
+      "rdfs:label": "Fuel Type"
+    },
+
+    "transmission": {
+      "@id": "schema:vehicleTransmission",
+      "@type": "xsd:string",
+      "rdfs:label": "Transmission Type"
+    },
+
+    "drivetrain": {
+      "@id": "schema:driveWheelConfiguration",
+      "@type": "xsd:string",
+      "rdfs:label": "Drive Wheel Configuration"
+    },
+
+    "mpg_city": {
+      "@id": "schema:fuelConsumption",
+      "@type": "xsd:decimal",
+      "rdfs:label": "City Fuel Economy (MPG)"
+    },
+
+    "mpg_highway": {
+      "@id": "schema:fuelEfficiency",
+      "@type": "xsd:decimal",
+      "rdfs:label": "Highway Fuel Economy (MPG)"
+    },
+
+    "doors": {
+      "@id": "schema:numberOfDoors",
+      "@type": "xsd:integer",
+      "rdfs:label": "Number of Doors"
+    },
+
+    "weight": {
+      "@id": "schema:weight",
+      "@type": "xsd:decimal",
+      "rdfs:label": "Curb Weight (lbs)"
+    },
+
+    "msrp": {
+      "@id": "schema:price",
+      "@type": "xsd:decimal",
+      "rdfs:label": "Manufacturer Suggested Retail Price"
+    },
+
+    "mean": {
+      "@id": "vinaudit:marketValueMean",
+      "@type": "xsd:decimal",
+      "rdfs:label": "Average Market Value",
+      "rdfs:comment": "Average market price estimate based on recent sale listings."
+    },
+
+    "stdev": {
+      "@id": "vinaudit:marketValueStdev",
+      "@type": "xsd:decimal",
+      "rdfs:label": "Market Value Standard Deviation"
+    },
+
+    "certainty": {
+      "@id": "vinaudit:statisticalCertainty",
+      "@type": "xsd:integer",
+      "rdfs:label": "Statistical Certainty Score",
+      "rdfs:comment": "Statistical confidence percentage (0-100) for the market value estimate."
+    },
+
+    "count": {
+      "@id": "vinaudit:dataPointCount",
+      "@type": "xsd:integer",
+      "rdfs:label": "Data Point Count",
+      "rdfs:comment": "Number of comparable sale listings used in the valuation calculation."
+    },
+
+    "mileage": {
+      "@id": "schema:mileageFromOdometer",
+      "@type": "xsd:integer",
+      "rdfs:label": "Mileage"
+    },
+
+    "prices": {
+      "@id": "vinaudit:priceRange",
+      "@type": "@id",
+      "rdfs:label": "Price Range Estimates"
+    },
+
+    "period": {
+      "@id": "vinaudit:dataPeriod",
+      "@type": "@id",
+      "rdfs:label": "Data Collection Period"
+    },
+
+    "type": {
+      "@id": "vinaudit:valuationType",
+      "@type": "xsd:string",
+      "rdfs:label": "Valuation Type",
+      "rdfs:comment": "Market segment for valuation: retail, wholesale, or tradein."
+    },
+
+    "adjustments": {
+      "@id": "vinaudit:valueAdjustments",
+      "@type": "@id",
+      "rdfs:label": "Valuation Adjustments"
+    },
+
+    "titles": {
+      "@id": "vinaudit:titleRecords",
+      "@type": "@id",
+      "rdfs:label": "Title Records",
+      "rdfs:comment": "Array of official DMV title records for the vehicle."
+    },
+
+    "accidents": {
+      "@id": "vinaudit:accidentRecords",
+      "@type": "@id",
+      "rdfs:label": "Accident Records"
+    },
+
+    "thefts": {
+      "@id": "vinaudit:theftRecords",
+      "@type": "@id",
+      "rdfs:label": "Theft Records"
+    },
+
+    "salvage": {
+      "@id": "vinaudit:salvageRecords",
+      "@type": "@id",
+      "rdfs:label": "Salvage Records"
+    },
+
+    "jsi": {
+      "@id": "vinaudit:junkSalvageInsuranceRecords",
+      "@type": "@id",
+      "rdfs:label": "Junk/Salvage/Insurance Records"
+    },
+
+    "lie": {
+      "@id": "vinaudit:lienImpoundExportRecords",
+      "@type": "@id",
+      "rdfs:label": "Lien/Impound/Export Records"
+    },
+
+    "clean": {
+      "@id": "vinaudit:cleanTitle",
+      "@type": "xsd:boolean",
+      "rdfs:label": "Clean Title Status",
+      "rdfs:comment": "True if the vehicle has no title brands, salvage records, or insurance total loss designations."
+    },
+
+    "recalls": {
+      "@id": "vinaudit:nhtsaRecalls",
+      "@type": "@id",
+      "rdfs:label": "NHTSA Recalls"
+    },
+
+    "warranties": {
+      "@id": "schema:warrantyPromise",
+      "@type": "@id",
+      "rdfs:label": "Manufacturer Warranties"
+    },
+
+    "total_cost_sum": {
+      "@id": "vinaudit:totalCostOfOwnership",
+      "@type": "xsd:decimal",
+      "rdfs:label": "5-Year Total Cost of Ownership"
+    },
+
+    "depreciation_cost": {
+      "@id": "vinaudit:depreciationCost",
+      "@type": "@id",
+      "rdfs:label": "Annual Depreciation Costs"
+    },
+
+    "insurance_cost": {
+      "@id": "vinaudit:insuranceCost",
+      "@type": "@id",
+      "rdfs:label": "Annual Insurance Costs"
+    },
+
+    "fuel_cost": {
+      "@id": "vinaudit:fuelCost",
+      "@type": "@id",
+      "rdfs:label": "Annual Fuel Costs"
+    },
+
+    "maintenance_cost": {
+      "@id": "vinaudit:maintenanceCost",
+      "@type": "@id",
+      "rdfs:label": "Annual Maintenance Costs"
+    },
+
+    "repairs_cost": {
+      "@id": "vinaudit:repairsCost",
+      "@type": "@id",
+      "rdfs:label": "Annual Repair Costs"
+    },
+
+    "fees_cost": {
+      "@id": "vinaudit:feesCost",
+      "@type": "@id",
+      "rdfs:label": "Annual State Fees and Taxes"
+    },
+
+    "success": {
+      "@id": "vinaudit:requestSuccess",
+      "@type": "xsd:boolean",
+      "rdfs:label": "Request Success"
+    },
+
+    "error": {
+      "@id": "vinaudit:errorCode",
+      "@type": "xsd:string",
+      "rdfs:label": "Error Code"
+    }
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/vinaudit/main/json-schema/vinaudit-vehicle-history-schema.json",
+  "title": "VINaudit Vehicle History Report",
+  "description": "JSON Schema for the VINaudit Vehicle History API response, covering title records, accident history, salvage records, and NMVTIS data.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique report identifier"
+    },
+    "vin": {
+      "type": "string",
+      "description": "17-character Vehicle Identification Number",
+      "pattern": "^[A-HJ-NPR-Z0-9]{17}$"
+    },
+    "date": {
+      "type": "string",
+      "description": "Report generation timestamp"
+    },
+    "attributes": {
+      "type": "object",
+      "description": "Vehicle attributes decoded from VIN",
+      "properties": {
+        "make": { "type": "string" },
+        "model": { "type": "string" },
+        "year": { "type": "string", "pattern": "^[0-9]{4}$" },
+        "engine": { "type": "string" },
+        "style": { "type": "string" },
+        "made_in": { "type": "string" },
+        "type": { "type": "string" }
+      }
+    },
+    "titles": {
+      "type": "array",
+      "description": "Array of title records",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": { "type": "string" },
+          "state": { "type": "string", "minLength": 2, "maxLength": 2 },
+          "odometer": { "type": "integer" },
+          "brand": { "type": "string" }
+        }
+      }
+    },
+    "jsi": {
+      "type": "array",
+      "description": "Junk, salvage, and insurance records",
+      "items": { "type": "object" }
+    },
+    "lie": {
+      "type": "array",
+      "description": "Lien, impound, and export records",
+      "items": { "type": "object" }
+    },
+    "thefts": {
+      "type": "array",
+      "description": "Theft and recovery records",
+      "items": { "type": "object" }
+    },
+    "accidents": {
+      "type": "array",
+      "description": "Accident history records",
+      "items": { "type": "object" }
+    },
+    "salvage": {
+      "type": "array",
+      "description": "Salvage auction records",
+      "items": { "type": "object" }
+    },
+    "sale": {
+      "type": "array",
+      "description": "Past sale listings",
+      "items": { "type": "object" }
+    },
+    "checks": {
+      "type": "array",
+      "description": "Title brand check records",
+      "items": { "type": "object" }
+    },
+    "canada_registrations": {
+      "type": "array",
+      "description": "Canadian registration data",
+      "items": { "type": "object" }
+    },
+    "canada_recalls": {
+      "type": "array",
+      "description": "Canadian recall information",
+      "items": { "type": "object" }
+    },
+    "canada_thefts": {
+      "type": "array",
+      "description": "Canadian theft records",
+      "items": { "type": "object" }
+    },
+    "clean": {
+      "type": "boolean",
+      "description": "True if vehicle is free of brands, salvage, and insurance records"
+    },
+    "success": {
+      "type": "boolean",
+      "description": "Whether the report was generated successfully"
+    },
+    "error": {
+      "type": "string",
+      "description": "Error code or empty string",
+      "enum": ["", "invalid_vin", "failed_request", "unauthorized_request", "incomplete_report", "expired_report", "missing_report"]
+    }
+  },
+  "required": ["success"]
+}

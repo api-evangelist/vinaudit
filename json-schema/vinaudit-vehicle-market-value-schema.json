@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/vinaudit/main/json-schema/vinaudit-vehicle-market-value-schema.json",
+  "title": "VINaudit Vehicle Market Value",
+  "description": "JSON Schema for the VINaudit Vehicle Market Value API response, returning retail, wholesale, or trade-in value estimates with statistical confidence.",
+  "type": "object",
+  "properties": {
+    "success": {
+      "type": "boolean",
+      "description": "Whether the valuation was successful"
+    },
+    "vin": {
+      "type": "string",
+      "description": "Vehicle Identification Number",
+      "pattern": "^[A-HJ-NPR-Z0-9]{17}$"
+    },
+    "id": {
+      "type": "string",
+      "description": "Unique YMMT vehicle identifier (year_make_model_trim)",
+      "example": "2014_toyota_corolla_s"
+    },
+    "vehicle": {
+      "type": "string",
+      "description": "Full vehicle description",
+      "example": "2014 Toyota Corolla S"
+    },
+    "mean": {
+      "type": "number",
+      "description": "Average market price estimate",
+      "minimum": 0
+    },
+    "stdev": {
+      "type": "number",
+      "description": "Standard deviation of prices in dataset",
+      "minimum": 0
+    },
+    "count": {
+      "type": "integer",
+      "description": "Number of sale listings used in calculation",
+      "minimum": 0
+    },
+    "mileage": {
+      "type": "integer",
+      "description": "Mileage used in valuation",
+      "minimum": 0
+    },
+    "certainty": {
+      "type": "integer",
+      "description": "Statistical confidence percentage",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "period": {
+      "type": "array",
+      "description": "Date range of sale data used (start and end dates)",
+      "items": {
+        "type": "string",
+        "format": "date"
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "prices": {
+      "type": "object",
+      "description": "Price range estimates",
+      "properties": {
+        "above": {
+          "type": "number",
+          "description": "Above-market price estimate"
+        },
+        "average": {
+          "type": "number",
+          "description": "Average market price estimate"
+        },
+        "below": {
+          "type": "number",
+          "description": "Below-market price estimate"
+        },
+        "distribution": {
+          "type": "array",
+          "description": "Price range distribution buckets",
+          "items": {
+            "type": "object",
+            "properties": {
+              "min": { "type": "number" },
+              "max": { "type": "number" },
+              "count": { "type": "integer" }
+            }
+          }
+        }
+      }
+    },
+    "adjustments": {
+      "type": "object",
+      "description": "Valuation adjustments applied",
+      "properties": {
+        "mileage": {
+          "type": "object",
+          "properties": {
+            "adjustment": { "type": "number" },
+            "average": { "type": "number" },
+            "input": { "type": "number" }
+          }
+        },
+        "history": {
+          "type": "object",
+          "properties": {
+            "records": { "type": "array", "items": { "type": "object" } },
+            "adjustment": { "type": "number" }
+          }
+        },
+        "condition": {
+          "type": "object",
+          "properties": {
+            "input": { "type": ["string", "null"] },
+            "adjustment": { "type": "number" }
+          }
+        },
+        "known_damage": {
+          "type": "object",
+          "properties": {
+            "input": { "type": ["string", "null"] },
+            "adjustment": { "type": "number" }
+          }
+        }
+      }
+    },
+    "type": {
+      "type": "string",
+      "description": "Market valuation type applied",
+      "enum": ["retail", "wholesale", "tradein"]
+    },
+    "error": {
+      "type": "string",
+      "description": "Error code or empty string",
+      "enum": ["", "invalid_key", "rate_limit_exceeded", "no_data", "invalid_vehicle", "invalid_request", "internal_error"]
+    }
+  },
+  "required": ["success"]
+}

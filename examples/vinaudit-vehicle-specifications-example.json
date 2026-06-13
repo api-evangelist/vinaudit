@@ -1,0 +1,82 @@
+{
+  "description": "Example response from VINaudit /v3/specifications endpoint for a 2005 Toyota Corolla CE YMMT lookup",
+  "request": {
+    "method": "GET",
+    "url": "https://specifications.vinaudit.com/v3/specifications",
+    "parameters": {
+      "key": "YOUR_API_KEY_HERE",
+      "year": 2005,
+      "make": "toyota",
+      "model": "corolla",
+      "trim": "ce",
+      "include": "selections,attributes,recalls,warranties",
+      "format": "json"
+    }
+  },
+  "response": {
+    "input": {
+      "key": "YOUR_API_KEY_HERE",
+      "year": "2005",
+      "make": "toyota",
+      "model": "corolla",
+      "trim": "ce",
+      "format": "json"
+    },
+    "selections": {
+      "trims": [
+        {
+          "id": "2005_toyota_corolla_ce",
+          "name": "CE",
+          "selected": 1,
+          "styles": []
+        },
+        {
+          "id": "2005_toyota_corolla_le",
+          "name": "LE",
+          "selected": 0,
+          "styles": []
+        }
+      ]
+    },
+    "attributes": {
+      "year": "2005",
+      "make": "Toyota",
+      "model": "Corolla",
+      "trim": "CE",
+      "type": "Car",
+      "size": "Compact",
+      "doors": 4,
+      "engine": "1.8-L L-4 DOHC 16V",
+      "fuel_type": "Regular Unleaded",
+      "mpg_city": 32,
+      "mpg_highway": 41,
+      "transmission": "5-Speed Manual",
+      "drivetrain": "FWD",
+      "weight": 2590,
+      "msrp": 14680
+    },
+    "recalls": [
+      {
+        "id": "05V338000",
+        "date": "2005-08-18",
+        "component": "FUEL SYSTEM, GASOLINE:DELIVERY:FUEL PUMP",
+        "description": "The fuel pump may fail causing the engine to stall.",
+        "remedy": "Dealers will replace the fuel pump."
+      }
+    ],
+    "warranties": [
+      {
+        "type": "Basic",
+        "miles": 36000,
+        "months": 36
+      },
+      {
+        "type": "Powertrain",
+        "miles": 60000,
+        "months": 60
+      }
+    ],
+    "success": true,
+    "error": ""
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/vinaudit/main/json-schema/vinaudit-vehicle-ownership-cost-schema.json",
+  "title": "VINaudit Vehicle Ownership Cost",
+  "description": "JSON Schema for the VINaudit Vehicle Ownership Cost API response, returning itemized 5-year cost projections for depreciation, insurance, fuel, maintenance, repairs, and fees.",
+  "type": "object",
+  "properties": {
+    "vin": {
+      "type": "string",
+      "description": "Vehicle Identification Number",
+      "pattern": "^[A-HJ-NPR-Z0-9]{17}$"
+    },
+    "mileage_start": {
+      "type": "integer",
+      "description": "Current vehicle mileage; -1 if unknown"
+    },
+    "mileage_year": {
+      "type": "integer",
+      "description": "Annual mileage estimate used in fuel and maintenance calculations",
+      "default": 15000,
+      "minimum": 0
+    },
+    "vehicle": {
+      "type": "string",
+      "description": "Full vehicle description (Year Make Model Trim)"
+    },
+    "depreciation_cost": {
+      "type": "array",
+      "description": "Yearly depreciation costs (5 values, one per year)",
+      "items": { "type": "number", "minimum": 0 },
+      "minItems": 5,
+      "maxItems": 5
+    },
+    "insurance_cost": {
+      "type": "array",
+      "description": "Yearly insurance costs (5 values, one per year)",
+      "items": { "type": "number", "minimum": 0 },
+      "minItems": 5,
+      "maxItems": 5
+    },
+    "fuel_cost": {
+      "type": "array",
+      "description": "Yearly fuel costs (5 values, one per year)",
+      "items": { "type": "number", "minimum": 0 },
+      "minItems": 5,
+      "maxItems": 5
+    },
+    "maintenance_cost": {
+      "type": "array",
+      "description": "Yearly routine maintenance costs (5 values, one per year)",
+      "items": { "type": "number", "minimum": 0 },
+      "minItems": 5,
+      "maxItems": 5
+    },
+    "repairs_cost": {
+      "type": "array",
+      "description": "Yearly repair costs (5 values, one per year)",
+      "items": { "type": "number", "minimum": 0 },
+      "minItems": 5,
+      "maxItems": 5
+    },
+    "fees_cost": {
+      "type": "array",
+      "description": "Yearly state fees and taxes (5 values, one per year)",
+      "items": { "type": "number", "minimum": 0 },
+      "minItems": 5,
+      "maxItems": 5
+    },
+    "total_cost": {
+      "type": "array",
+      "description": "Yearly total costs (5 values, one per year)",
+      "items": { "type": "number", "minimum": 0 },
+      "minItems": 5,
+      "maxItems": 5
+    },
+    "total_cost_sum": {
+      "type": "number",
+      "description": "Cumulative 5-year total cost of ownership",
+      "minimum": 0
+    },
+    "success": {
+      "type": "boolean",
+      "description": "Whether the ownership cost calculation was successful"
+    },
+    "error": {
+      "type": "string",
+      "description": "Error message or empty string if successful"
+    }
+  },
+  "required": ["success"]
+}

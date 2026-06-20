@@ -3,7 +3,7 @@ description: Vehicle history and VIN decoding REST API for accessing accident re
   title information, mileage history, ownership records, and NHTSA recall data for
   any US vehicle. VINaudit is an NMVTIS-approved data provider offering vehicle history,
   specifications, market value, ownership cost, and vehicle image APIs.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/vinaudit/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -24,7 +24,7 @@ apis:
     description: Access raw vehicle history data sourced from NMVTIS and other providers
       covering title records, odometer readings, accident records, salvage information,
       theft records, and junk/salvage brands for vehicles in the US and Canada.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://www.vinaudit.com/vehicle-history-api
     baseURL: https://api.vinaudit.com
     tags:
@@ -44,7 +44,7 @@ apis:
     description: Retrieve standardized vehicle specifications by VIN or year/make/model/trim
       including engine details, transmission, fuel economy, dimensions, colors, equipment,
       NHTSA recalls, warranties, and vehicle photos.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://www.vinaudit.com/vehicle-specifications-api
     baseURL: https://specifications.vinaudit.com
     tags:
@@ -62,7 +62,7 @@ apis:
     description: Estimate the current market value of a vehicle using aggregated data
       from millions of recent sale listings, returning low, average, and high-end
       values with a statistical certainty score.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://www.vinaudit.com/vehicle-market-value-api
     baseURL: https://api.vinaudit.com
     tags:
@@ -78,7 +78,7 @@ apis:
   - name: VINaudit Vehicle Ownership Cost API
     description: Calculate 5-year total cost of ownership by VIN, factoring in depreciation,
       insurance, fuel, maintenance, repairs, and taxes.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://www.vinaudit.com/vehicle-ownership-cost-api
     baseURL: https://api.vinaudit.com
     tags:
@@ -94,7 +94,7 @@ apis:
   - name: VINaudit Vehicle Image API
     description: Access original stock vehicle images by make, model, year, and trim.
       Beta API providing clean, professional car images retrieved by VIN or year/make/model/trim.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://www.vinaudit.com/vehicle-data-api
     baseURL: https://api.vinaudit.com
     tags:

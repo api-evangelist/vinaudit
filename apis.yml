@@ -108,6 +108,8 @@ apis:
       - FN: VINaudit Support
         url: https://www.vinaudit.com/vehicle-data-api
 common:
+  - type: AgenticAccess
+    url: agentic-access/vinaudit-agentic-access.yml
   - type: DomainSecurity
     url: security/vinaudit-domain-security.yml
   - type: Website

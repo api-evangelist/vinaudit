@@ -1,64 +1,58 @@
 openapi: 3.0.3
 info:
-  title: VINaudit Vehicle Ownership Cost API
-  description: >-
-    Calculate 5-year total cost of ownership by VIN, factoring in depreciation,
-    insurance, fuel, maintenance, repairs, and state fees and taxes. Returns
-    itemized yearly cost breakdowns and a cumulative 5-year total.
-  version: '1.0'
+  title: VINaudit Vehicle History Getownershipcost.php API
+  description: Access raw vehicle history data sourced from NMVTIS and other providers covering title records, odometer readings, accident records, salvage information, theft records, and junk/salvage brands for vehicles in the US and Canada. VINaudit is an NMVTIS-approved data provider.
+  version: '2.0'
   contact:
     name: VINaudit Support
     url: https://www.vinaudit.com/vehicle-data-api
   license:
     name: Commercial
-    url: https://www.vinaudit.com/vehicle-ownership-cost-api
+    url: https://www.vinaudit.com/vehicle-history-api
 servers:
-  - url: http://ownershipcost.vinaudit.com
-    description: VINaudit Vehicle Ownership Cost API
+- url: https://api.vinaudit.com/v2
+  description: VINaudit Vehicle History API v2
+tags:
+- name: Getownershipcost.php
 paths:
   /getownershipcost.php:
     get:
       operationId: getOwnershipCost
       summary: Get Vehicle 5-Year Ownership Cost
-      description: >-
-        Calculate the estimated 5-year total cost of ownership for a vehicle
-        identified by VIN. Returns itemized yearly cost arrays for depreciation,
-        insurance, fuel, maintenance, repairs, and state fees/taxes, plus a
-        cumulative 5-year total. The state parameter is required to apply
-        location-specific fee and tax calculations.
+      description: Calculate the estimated 5-year total cost of ownership for a vehicle identified by VIN. Returns itemized yearly cost arrays for depreciation, insurance, fuel, maintenance, repairs, and state fees/taxes, plus a cumulative 5-year total. The state parameter is required to apply location-specific fee and tax calculations.
       parameters:
-        - name: vin
-          in: query
-          required: true
-          description: 17-character Vehicle Identification Number
-          schema:
-            type: string
-            example: 1NXBR32E85Z505904
-        - name: key
-          in: query
-          required: true
-          description: API authentication key
-          schema:
-            type: string
-            example: YOUR_API_KEY_HERE
-        - name: state
-          in: query
-          required: true
-          description: Two-letter US state code for location-specific tax and fee calculation
-          schema:
-            type: string
-            minLength: 2
-            maxLength: 2
-            example: WA
-        - name: format
-          in: query
-          required: false
-          description: Response format
-          schema:
-            type: string
-            enum:
-              - json
-            default: json
+      - name: vin
+        in: query
+        required: true
+        description: 17-character Vehicle Identification Number
+        schema:
+          type: string
+          example: 1NXBR32E85Z505904
+      - name: key
+        in: query
+        required: true
+        description: API authentication key
+        schema:
+          type: string
+          example: YOUR_API_KEY_HERE
+      - name: state
+        in: query
+        required: true
+        description: Two-letter US state code for location-specific tax and fee calculation
+        schema:
+          type: string
+          minLength: 2
+          maxLength: 2
+          example: WA
+      - name: format
+        in: query
+        required: false
+        description: Response format
+        schema:
+          type: string
+          enum:
+          - json
+          default: json
       responses:
         '200':
           description: Vehicle 5-year ownership cost response
@@ -66,6 +60,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OwnershipCostResponse'
+      tags:
+      - Getownershipcost.php
     post:
       operationId: getOwnershipCostPost
       summary: Get Vehicle 5-Year Ownership Cost (POST)
@@ -77,9 +73,9 @@ paths:
             schema:
               type: object
               required:
-                - vin
-                - key
-                - state
+              - vin
+              - key
+              - state
               properties:
                 vin:
                   type: string
@@ -93,7 +89,7 @@ paths:
                 format:
                   type: string
                   enum:
-                    - json
+                  - json
       responses:
         '200':
           description: Vehicle 5-year ownership cost response
@@ -101,6 +97,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OwnershipCostResponse'
+      tags:
+      - Getownershipcost.php
 components:
   schemas:
     YearlyCostArray:
@@ -149,7 +147,7 @@ components:
         total_cost_sum:
           type: number
           description: Cumulative 5-year total cost of ownership
-          example: 38500.00
+          example: 38500.0
         success:
           type: boolean
           description: Whether the ownership cost calculation was successful

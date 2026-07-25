@@ -1,0 +1,233 @@
+openapi: 3.0.3
+info:
+  title: VINaudit Vehicle History Getownershipcost.php Report API
+  description: Access raw vehicle history data sourced from NMVTIS and other providers covering title records, odometer readings, accident records, salvage information, theft records, and junk/salvage brands for vehicles in the US and Canada. VINaudit is an NMVTIS-approved data provider.
+  version: '2.0'
+  contact:
+    name: VINaudit Support
+    url: https://www.vinaudit.com/vehicle-data-api
+  license:
+    name: Commercial
+    url: https://www.vinaudit.com/vehicle-history-api
+servers:
+- url: https://api.vinaudit.com/v2
+  description: VINaudit Vehicle History API v2
+tags:
+- name: Report
+paths:
+  /report:
+    get:
+      operationId: viewReport
+      summary: View a Generated Vehicle History Report
+      description: Retrieve a previously generated vehicle history report by its report ID. Returns the full dataset including title history, accident records, salvage information, and brand checks.
+      parameters:
+      - name: id
+        in: query
+        required: true
+        description: Report identifier from a previous /query or /pullreport call
+        schema:
+          type: string
+          example: '182896361699'
+      - name: key
+        in: query
+        required: true
+        description: API authentication key
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: true
+        description: Response format
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          - pdf
+      - name: type
+        in: query
+        required: false
+        description: PDF type (PDF only)
+        schema:
+          type: string
+          enum:
+          - USA
+          - CAN
+      - name: brand
+        in: query
+        required: false
+        description: Include brand codes in PDF (PDF only)
+        schema:
+          type: integer
+      - name: lang
+        in: query
+        required: false
+        description: PDF language (PDF only)
+        schema:
+          type: string
+          enum:
+          - en
+          - es
+      - name: skipspec
+        in: query
+        required: false
+        description: Set to 1 to skip vehicle specifications
+        schema:
+          type: integer
+      - name: mode
+        in: query
+        required: false
+        description: Set to test for test mode
+        schema:
+          type: string
+          enum:
+          - test
+      - name: callback
+        in: query
+        required: false
+        description: JSONP callback function name (JSON only)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Vehicle history report
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoryReportResponse'
+      tags:
+      - Report
+components:
+  schemas:
+    VehicleAttributes:
+      type: object
+      description: Basic vehicle attributes decoded from VIN
+      properties:
+        make:
+          type: string
+          description: Vehicle make
+          example: TOYOTA
+        model:
+          type: string
+          description: Vehicle model
+          example: COROLLA CE
+        year:
+          type: string
+          description: Vehicle model year
+          example: '2005'
+        engine:
+          type: string
+          description: Engine specifications
+        style:
+          type: string
+          description: Vehicle body style
+        made_in:
+          type: string
+          description: Country of manufacture
+        type:
+          type: string
+          description: Vehicle type classification
+    HistoryReportResponse:
+      type: object
+      description: Full vehicle history report
+      properties:
+        id:
+          type: string
+          description: Report identifier
+        vin:
+          type: string
+          description: Vehicle Identification Number
+        date:
+          type: string
+          description: Report generation timestamp
+        attributes:
+          $ref: '#/components/schemas/VehicleAttributes'
+        titles:
+          type: array
+          description: Array of title records
+          items:
+            $ref: '#/components/schemas/TitleRecord'
+        jsi:
+          type: array
+          description: Junk, salvage, and insurance records
+          items:
+            type: object
+        lie:
+          type: array
+          description: Lien, impound, and export records
+          items:
+            type: object
+        thefts:
+          type: array
+          description: Theft and recovery records
+          items:
+            type: object
+        accidents:
+          type: array
+          description: Accident history records
+          items:
+            type: object
+        salvage:
+          type: array
+          description: Salvage auction records
+          items:
+            type: object
+        sale:
+          type: array
+          description: Past sale listings
+          items:
+            type: object
+        checks:
+          type: array
+          description: Title brand check records
+          items:
+            type: object
+        canada_registrations:
+          type: array
+          description: Canadian registration data
+          items:
+            type: object
+        canada_recalls:
+          type: array
+          description: Canadian recall information
+          items:
+            type: object
+        canada_thefts:
+          type: array
+          description: Canadian theft records
+          items:
+            type: object
+        clean:
+          type: boolean
+          description: True if vehicle is free of brands, salvage, and insurance records
+        success:
+          type: boolean
+          description: Whether the report was generated successfully
+        error:
+          type: string
+          description: Error code or empty string
+          enum:
+          - ''
+          - invalid_vin
+          - failed_request
+          - unauthorized_request
+          - incomplete_report
+          - expired_report
+          - missing_report
+    TitleRecord:
+      type: object
+      description: A single title record entry
+      properties:
+        date:
+          type: string
+          format: date
+          description: Date of title record
+        state:
+          type: string
+          description: Two-letter state code
+        odometer:
+          type: integer
+          description: Odometer reading at time of title
+        brand:
+          type: string
+          description: Title brand if any

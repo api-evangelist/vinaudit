@@ -1,0 +1,199 @@
+openapi: 3.0.3
+info:
+  title: VINaudit Vehicle History Getownershipcost.php Selections API
+  description: Access raw vehicle history data sourced from NMVTIS and other providers covering title records, odometer readings, accident records, salvage information, theft records, and junk/salvage brands for vehicles in the US and Canada. VINaudit is an NMVTIS-approved data provider.
+  version: '2.0'
+  contact:
+    name: VINaudit Support
+    url: https://www.vinaudit.com/vehicle-data-api
+  license:
+    name: Commercial
+    url: https://www.vinaudit.com/vehicle-history-api
+servers:
+- url: https://api.vinaudit.com/v2
+  description: VINaudit Vehicle History API v2
+tags:
+- name: Selections
+paths:
+  /selections:
+    get:
+      operationId: getVehicleSelections
+      summary: Get Vehicle Selections
+      description: Retrieve lists of available years, makes, models, and trims. Supports filtering by providing partial YMMT parameters. Use the list parameter to control how many hierarchy levels are returned. Use the collection parameter to filter by market status.
+      parameters:
+      - name: key
+        in: query
+        required: true
+        description: API authentication key
+        schema:
+          type: string
+          example: YOUR_API_KEY_HERE
+      - name: list
+        in: query
+        required: false
+        description: Controls which YMMT hierarchy levels to return. Can be year, year+make, year+make+model, or year+make+model+trim.
+        schema:
+          type: string
+          example: year+make+model
+      - name: id
+        in: query
+        required: false
+        description: Vehicle ID to filter selections
+        schema:
+          type: string
+          example: 2013_subaru_outback
+      - name: year
+        in: query
+        required: false
+        description: Filter by year
+        schema:
+          type: integer
+          example: 2013
+      - name: make
+        in: query
+        required: false
+        description: Filter by make
+        schema:
+          type: string
+          example: subaru
+      - name: model
+        in: query
+        required: false
+        description: Filter by model
+        schema:
+          type: string
+          example: outback
+      - name: trim
+        in: query
+        required: false
+        description: Filter by trim
+        schema:
+          type: string
+          example: base
+      - name: style
+        in: query
+        required: false
+        description: Filter by body style
+        schema:
+          type: string
+          example: wagon
+      - name: collection
+        in: query
+        required: false
+        description: Filter by market availability
+        schema:
+          type: string
+          enum:
+          - in-market
+          - popular
+          - all
+      - name: format
+        in: query
+        required: false
+        description: Response format
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          - csv
+          default: json
+      responses:
+        '200':
+          description: Vehicle selections response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SelectionsResponse'
+              example:
+                selections:
+                  years:
+                  - name: 2013
+                    id: '2013'
+                    makes:
+                    - name: Subaru
+                      id: 2013_subaru
+                      models:
+                      - name: Outback
+                        id: 2013_subaru_outback
+                        trims:
+                        - name: 2.5i
+                          id: 2013_subaru_outback_25i
+                        - name: Base
+                          id: 2013_subaru_outback_base
+      tags:
+      - Selections
+components:
+  schemas:
+    TrimEntry:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Trim name
+        id:
+          type: string
+          description: Trim identifier
+    SelectionsResponse:
+      type: object
+      description: Vehicle selections API response
+      properties:
+        selections:
+          type: object
+          description: Available vehicle selections
+          properties:
+            years:
+              type: array
+              items:
+                $ref: '#/components/schemas/YearEntry'
+            makes:
+              type: array
+              items:
+                $ref: '#/components/schemas/MakeEntry'
+            models:
+              type: array
+              items:
+                $ref: '#/components/schemas/ModelEntry'
+            trims:
+              type: array
+              items:
+                $ref: '#/components/schemas/TrimEntry'
+    YearEntry:
+      type: object
+      properties:
+        name:
+          type: integer
+          description: Model year number
+        id:
+          type: string
+          description: Year identifier
+        makes:
+          type: array
+          items:
+            $ref: '#/components/schemas/MakeEntry'
+    MakeEntry:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Make name
+        id:
+          type: string
+          description: Make identifier
+        models:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModelEntry'
+    ModelEntry:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Model name
+        id:
+          type: string
+          description: Model identifier
+        trims:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrimEntry'

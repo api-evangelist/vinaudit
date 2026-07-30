@@ -3,7 +3,19 @@ description: Vehicle history and VIN decoding REST API for accessing accident re
   title information, mileage history, ownership records, and NHTSA recall data for
   any US vehicle. VINaudit is an NMVTIS-approved data provider offering vehicle history,
   specifications, market value, ownership cost, and vehicle image APIs.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Paid
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/vinaudit.png
 url: https://raw.githubusercontent.com/api-evangelist/vinaudit/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -20,93 +32,160 @@ tags:
   - Recall Data
   - REST
 apis:
-  - name: VINaudit Vehicle History API
-    description: Access raw vehicle history data sourced from NMVTIS and other providers
-      covering title records, odometer readings, accident records, salvage information,
-      theft records, and junk/salvage brands for vehicles in the US and Canada.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://www.vinaudit.com/vehicle-history-api
-    baseURL: https://api.vinaudit.com
-    tags:
-      - Vehicle History
-      - NMVTIS
-      - Title Records
-      - Accident Records
-    properties:
-      - type: Documentation
-        url: https://www.vinaudit.com/vehicle-history-api
-      - type: OpenAPI
-        url: https://www.vinaudit.com/vehicle-history-api
-    contact:
-      - FN: VINaudit Support
-        url: https://www.vinaudit.com/vehicle-data-api
-  - name: VINaudit Vehicle Specifications API
-    description: Retrieve standardized vehicle specifications by VIN or year/make/model/trim
-      including engine details, transmission, fuel economy, dimensions, colors, equipment,
-      NHTSA recalls, warranties, and vehicle photos.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://www.vinaudit.com/vehicle-specifications-api
-    baseURL: https://specifications.vinaudit.com
-    tags:
-      - Vehicle Specifications
-      - VIN Decoding
-      - Recall Data
-      - NHTSA
-    properties:
-      - type: Documentation
-        url: https://www.vinaudit.com/vehicle-specifications-api
-    contact:
-      - FN: VINaudit Support
-        url: https://www.vinaudit.com/vehicle-data-api
-  - name: VINaudit Vehicle Market Value API
-    description: Estimate the current market value of a vehicle using aggregated data
-      from millions of recent sale listings, returning low, average, and high-end
-      values with a statistical certainty score.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://www.vinaudit.com/vehicle-market-value-api
-    baseURL: https://api.vinaudit.com
-    tags:
-      - Market Value
-      - Vehicle Pricing
-      - Automotive Data
-    properties:
-      - type: Documentation
-        url: https://www.vinaudit.com/vehicle-market-value-api
-    contact:
-      - FN: VINaudit Support
-        url: https://www.vinaudit.com/vehicle-data-api
-  - name: VINaudit Vehicle Ownership Cost API
-    description: Calculate 5-year total cost of ownership by VIN, factoring in depreciation,
-      insurance, fuel, maintenance, repairs, and taxes.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://www.vinaudit.com/vehicle-ownership-cost-api
-    baseURL: https://api.vinaudit.com
-    tags:
-      - Ownership Cost
-      - Vehicle Financing
-      - Total Cost of Ownership
-    properties:
-      - type: Documentation
-        url: https://www.vinaudit.com/vehicle-ownership-cost-api
-    contact:
-      - FN: VINaudit Support
-        url: https://www.vinaudit.com/vehicle-data-api
-  - name: VINaudit Vehicle Image API
-    description: Access original stock vehicle images by make, model, year, and trim.
-      Beta API providing clean, professional car images retrieved by VIN or year/make/model/trim.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://www.vinaudit.com/vehicle-data-api
-    baseURL: https://api.vinaudit.com
-    tags:
-      - Vehicle Images
-      - Automotive Photos
-      - Beta
-    properties:
-      - type: Documentation
-        url: https://www.vinaudit.com/vehicle-data-api
-    contact:
-      - FN: VINaudit Support
-        url: https://www.vinaudit.com/vehicle-data-api
+- name: VINaudit Vehicle Specifications API
+  description: >-
+    Retrieve standardized vehicle specifications by VIN or year/make/model/trim including engine details,
+    transmission, fuel economy, dimensions, colors, equipment, NHTSA recalls, warranties, and vehicle
+    photos.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.vinaudit.com/vehicle-specifications-api
+  baseURL: https://specifications.vinaudit.com
+  tags:
+  - Vehicle Specifications
+  - VIN Decoding
+  - Recall Data
+  - NHTSA
+  properties:
+  - type: Documentation
+    url: https://www.vinaudit.com/vehicle-specifications-api
+  contact:
+  - FN: VINaudit Support
+    url: https://www.vinaudit.com/vehicle-data-api
+- name: VINaudit Vehicle Market Value API
+  description: >-
+    Estimate the current market value of a vehicle using aggregated data from millions of recent sale
+    listings, returning low, average, and high-end values with a statistical certainty score.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.vinaudit.com/vehicle-market-value-api
+  baseURL: https://api.vinaudit.com
+  tags:
+  - Market Value
+  - Vehicle Pricing
+  - Automotive Data
+  properties:
+  - type: Documentation
+    url: https://www.vinaudit.com/vehicle-market-value-api
+  contact:
+  - FN: VINaudit Support
+    url: https://www.vinaudit.com/vehicle-data-api
+- name: VINaudit Vehicle Ownership Cost API
+  description: >-
+    Calculate 5-year total cost of ownership by VIN, factoring in depreciation, insurance, fuel, maintenance,
+    repairs, and taxes.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.vinaudit.com/vehicle-ownership-cost-api
+  baseURL: https://api.vinaudit.com
+  tags:
+  - Ownership Cost
+  - Vehicle Financing
+  - Total Cost of Ownership
+  properties:
+  - type: Documentation
+    url: https://www.vinaudit.com/vehicle-ownership-cost-api
+  contact:
+  - FN: VINaudit Support
+    url: https://www.vinaudit.com/vehicle-data-api
+- name: VINaudit Vehicle Image API
+  description: >-
+    Access original stock vehicle images by make, model, year, and trim. Beta API providing clean, professional
+    car images retrieved by VIN or year/make/model/trim.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.vinaudit.com/vehicle-data-api
+  baseURL: https://api.vinaudit.com
+  tags:
+  - Vehicle Images
+  - Automotive Photos
+  - Beta
+  properties:
+  - type: Documentation
+    url: https://www.vinaudit.com/vehicle-data-api
+  contact:
+  - FN: VINaudit Support
+    url: https://www.vinaudit.com/vehicle-data-api
+- aid: vinaudit:vinaudit-getownershipcost-php-api
+  name: VINaudit Getownershipcost.php API
+  description: The Getownershipcost.php API from VINaudit — 1 operation(s) for getownershipcost.php.
+  humanURL: https://www.vinaudit.com/vehicle-history-api
+  baseURL: https://api.vinaudit.com
+  tags:
+  - Getownershipcost.php
+  properties:
+  - type: OpenAPI
+    url: openapi/vinaudit-getownershipcost-php-api-openapi.yml
+  - type: Documentation
+    url: https://www.vinaudit.com/vehicle-history-api
+- aid: vinaudit:vinaudit-marketvalue-api
+  name: VINaudit Marketvalue API
+  description: The Marketvalue API from VINaudit — 1 operation(s) for marketvalue.
+  humanURL: https://www.vinaudit.com/vehicle-history-api
+  baseURL: https://api.vinaudit.com
+  tags:
+  - Marketvalue
+  properties:
+  - type: OpenAPI
+    url: openapi/vinaudit-marketvalue-api-openapi.yml
+  - type: Documentation
+    url: https://www.vinaudit.com/vehicle-history-api
+- aid: vinaudit:vinaudit-pullreport-api
+  name: VINaudit Pullreport API
+  description: The Pullreport API from VINaudit — 1 operation(s) for pullreport.
+  humanURL: https://www.vinaudit.com/vehicle-history-api
+  baseURL: https://api.vinaudit.com
+  tags:
+  - Pullreport
+  properties:
+  - type: OpenAPI
+    url: openapi/vinaudit-pullreport-api-openapi.yml
+  - type: Documentation
+    url: https://www.vinaudit.com/vehicle-history-api
+- aid: vinaudit:vinaudit-query-api
+  name: VINaudit Query API
+  description: The Query API from VINaudit — 1 operation(s) for query.
+  humanURL: https://www.vinaudit.com/vehicle-history-api
+  baseURL: https://api.vinaudit.com
+  tags:
+  - Query
+  properties:
+  - type: OpenAPI
+    url: openapi/vinaudit-query-api-openapi.yml
+  - type: Documentation
+    url: https://www.vinaudit.com/vehicle-history-api
+- aid: vinaudit:vinaudit-report-api
+  name: VINaudit Report API
+  description: The Report API from VINaudit — 1 operation(s) for report.
+  humanURL: https://www.vinaudit.com/vehicle-history-api
+  baseURL: https://api.vinaudit.com
+  tags:
+  - Report
+  properties:
+  - type: OpenAPI
+    url: openapi/vinaudit-report-api-openapi.yml
+  - type: Documentation
+    url: https://www.vinaudit.com/vehicle-history-api
+- aid: vinaudit:vinaudit-selections-api
+  name: VINaudit Selections API
+  description: The Selections API from VINaudit — 1 operation(s) for selections.
+  humanURL: https://www.vinaudit.com/vehicle-history-api
+  baseURL: https://api.vinaudit.com
+  tags:
+  - Selections
+  properties:
+  - type: OpenAPI
+    url: openapi/vinaudit-selections-api-openapi.yml
+  - type: Documentation
+    url: https://www.vinaudit.com/vehicle-history-api
+- aid: vinaudit:vinaudit-specifications-api
+  name: VINaudit Specifications API
+  description: The Specifications API from VINaudit — 1 operation(s) for specifications.
+  humanURL: https://www.vinaudit.com/vehicle-history-api
+  baseURL: https://api.vinaudit.com
+  tags:
+  - Specifications
+  properties:
+  - type: OpenAPI
+    url: openapi/vinaudit-specifications-api-openapi.yml
+  - type: Documentation
+    url: https://www.vinaudit.com/vehicle-history-api
 common:
   - type: AgenticAccess
     url: agentic-access/vinaudit-agentic-access.yml

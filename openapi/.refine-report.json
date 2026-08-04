@@ -1,0 +1,26 @@
+{
+  "provider": "vinaudit",
+  "sources": [
+    "vinaudit-getownershipcost-php-api-openapi.yml",
+    "vinaudit-marketvalue-api-openapi.yml",
+    "vinaudit-pullreport-api-openapi.yml",
+    "vinaudit-query-api-openapi.yml",
+    "vinaudit-report-api-openapi.yml",
+    "vinaudit-selections-api-openapi.yml",
+    "vinaudit-specifications-api-openapi.yml"
+  ],
+  "outputs": [
+    "vinaudit-getownershipcost-php-api-openapi.yml",
+    "vinaudit-marketvalue-api-openapi.yml",
+    "vinaudit-pullreport-api-openapi.yml",
+    "vinaudit-query-api-openapi.yml",
+    "vinaudit-report-api-openapi.yml",
+    "vinaudit-selections-api-openapi.yml",
+    "vinaudit-specifications-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

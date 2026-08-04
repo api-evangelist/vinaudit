@@ -1,0 +1,159 @@
+openapi: 3.0.3
+info:
+  title: VINaudit Vehicle Ownership Cost API
+  description: >-
+    Calculate 5-year total cost of ownership by VIN, factoring in depreciation,
+    insurance, fuel, maintenance, repairs, and state fees and taxes. Returns
+    itemized yearly cost breakdowns and a cumulative 5-year total.
+  version: '1.0'
+  contact:
+    name: VINaudit Support
+    url: https://www.vinaudit.com/vehicle-data-api
+  license:
+    name: Commercial
+    url: https://www.vinaudit.com/vehicle-ownership-cost-api
+servers:
+  - url: http://ownershipcost.vinaudit.com
+    description: VINaudit Vehicle Ownership Cost API
+paths:
+  /getownershipcost.php:
+    get:
+      operationId: getOwnershipCost
+      summary: Get Vehicle 5-Year Ownership Cost
+      description: >-
+        Calculate the estimated 5-year total cost of ownership for a vehicle
+        identified by VIN. Returns itemized yearly cost arrays for depreciation,
+        insurance, fuel, maintenance, repairs, and state fees/taxes, plus a
+        cumulative 5-year total. The state parameter is required to apply
+        location-specific fee and tax calculations.
+      parameters:
+        - name: vin
+          in: query
+          required: true
+          description: 17-character Vehicle Identification Number
+          schema:
+            type: string
+            example: 1NXBR32E85Z505904
+        - name: key
+          in: query
+          required: true
+          description: API authentication key
+          schema:
+            type: string
+            example: YOUR_API_KEY_HERE
+        - name: state
+          in: query
+          required: true
+          description: Two-letter US state code for location-specific tax and fee calculation
+          schema:
+            type: string
+            minLength: 2
+            maxLength: 2
+            example: WA
+        - name: format
+          in: query
+          required: false
+          description: Response format
+          schema:
+            type: string
+            enum:
+              - json
+            default: json
+      responses:
+        '200':
+          description: Vehicle 5-year ownership cost response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OwnershipCostResponse'
+    post:
+      operationId: getOwnershipCostPost
+      summary: Get Vehicle 5-Year Ownership Cost (POST)
+      description: Calculate the estimated 5-year total cost of ownership using POST method.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - vin
+                - key
+                - state
+              properties:
+                vin:
+                  type: string
+                  description: 17-character Vehicle Identification Number
+                key:
+                  type: string
+                  description: API authentication key
+                state:
+                  type: string
+                  description: Two-letter US state code
+                format:
+                  type: string
+                  enum:
+                    - json
+      responses:
+        '200':
+          description: Vehicle 5-year ownership cost response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OwnershipCostResponse'
+components:
+  schemas:
+    YearlyCostArray:
+      type: array
+      description: Array of 5 yearly cost values (year 1 through year 5)
+      items:
+        type: number
+        description: Cost in dollars for that year
+      minItems: 5
+      maxItems: 5
+    OwnershipCostResponse:
+      type: object
+      description: 5-year vehicle ownership cost response
+      properties:
+        vin:
+          type: string
+          description: Vehicle Identification Number
+          example: 1NXBR32E85Z505904
+        mileage_start:
+          type: integer
+          description: Current vehicle mileage (-1 if unknown)
+          example: -1
+        mileage_year:
+          type: integer
+          description: Annual mileage estimate used in calculation
+          default: 15000
+          example: 15000
+        vehicle:
+          type: string
+          description: Full vehicle description (Year Make Model Trim)
+          example: 2005 Toyota Corolla CE
+        depreciation_cost:
+          $ref: '#/components/schemas/YearlyCostArray'
+        insurance_cost:
+          $ref: '#/components/schemas/YearlyCostArray'
+        fuel_cost:
+          $ref: '#/components/schemas/YearlyCostArray'
+        maintenance_cost:
+          $ref: '#/components/schemas/YearlyCostArray'
+        repairs_cost:
+          $ref: '#/components/schemas/YearlyCostArray'
+        fees_cost:
+          $ref: '#/components/schemas/YearlyCostArray'
+        total_cost:
+          $ref: '#/components/schemas/YearlyCostArray'
+        total_cost_sum:
+          type: number
+          description: Cumulative 5-year total cost of ownership
+          example: 38500.00
+        success:
+          type: boolean
+          description: Whether the ownership cost calculation was successful
+        error:
+          type: string
+          description: Error message or empty string if successful
+          example: ''

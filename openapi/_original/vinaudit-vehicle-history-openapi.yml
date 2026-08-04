@@ -1,0 +1,553 @@
+openapi: 3.0.3
+info:
+  title: VINaudit Vehicle History API
+  description: >-
+    Access raw vehicle history data sourced from NMVTIS and other providers
+    covering title records, odometer readings, accident records, salvage
+    information, theft records, and junk/salvage brands for vehicles in the
+    US and Canada. VINaudit is an NMVTIS-approved data provider.
+  version: '2.0'
+  contact:
+    name: VINaudit Support
+    url: https://www.vinaudit.com/vehicle-data-api
+  license:
+    name: Commercial
+    url: https://www.vinaudit.com/vehicle-history-api
+servers:
+  - url: https://api.vinaudit.com/v2
+    description: VINaudit Vehicle History API v2
+paths:
+  /query:
+    get:
+      operationId: queryVin
+      summary: Query a VIN for Records
+      description: >-
+        Initialize a vehicle history lookup by VIN. Returns basic vehicle
+        attributes and a report ID that can be used to pull the full history
+        report. Supports test mode via the mode parameter.
+      parameters:
+        - name: vin
+          in: query
+          required: true
+          description: 17-character Vehicle Identification Number
+          schema:
+            type: string
+            example: 1VXBR12EXCP901214
+        - name: key
+          in: query
+          required: true
+          description: API authentication key
+          schema:
+            type: string
+            example: YOUR_API_KEY_HERE
+        - name: user
+          in: query
+          required: true
+          description: API username credential
+          schema:
+            type: string
+            example: va
+        - name: pass
+          in: query
+          required: true
+          description: API password credential
+          schema:
+            type: string
+            example: test
+        - name: format
+          in: query
+          required: true
+          description: Response format
+          schema:
+            type: string
+            enum:
+              - json
+              - xml
+            default: json
+        - name: skipspec
+          in: query
+          required: false
+          description: Set to 1 to skip vehicle specifications in response
+          schema:
+            type: integer
+            enum:
+              - 0
+              - 1
+        - name: mode
+          in: query
+          required: false
+          description: Set to test for test mode requests
+          schema:
+            type: string
+            enum:
+              - test
+        - name: callback
+          in: query
+          required: false
+          description: JSONP callback function name
+          schema:
+            type: string
+            example: OnVinQueryData
+      responses:
+        '200':
+          description: Successful VIN query response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResponse'
+              example:
+                vin: 1VXBR12EXCP901214
+                id: S41149125266
+                attributes:
+                  make: TOYOTA
+                  model: COROLLA CE
+                  year: '2005'
+                success: true
+                error: ''
+    post:
+      operationId: queryVinPost
+      summary: Query a VIN for Records (POST)
+      description: >-
+        Initialize a vehicle history lookup by VIN using POST method. Returns
+        basic vehicle attributes and a report ID.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - vin
+                - key
+                - user
+                - pass
+                - format
+              properties:
+                vin:
+                  type: string
+                  description: 17-character Vehicle Identification Number
+                  example: 1VXBR12EXCP901214
+                key:
+                  type: string
+                  description: API authentication key
+                user:
+                  type: string
+                  description: API username credential
+                pass:
+                  type: string
+                  description: API password credential
+                format:
+                  type: string
+                  enum:
+                    - json
+                    - xml
+                skipspec:
+                  type: integer
+                  description: Set to 1 to skip specs
+                mode:
+                  type: string
+                  enum:
+                    - test
+                callback:
+                  type: string
+      responses:
+        '200':
+          description: Successful VIN query response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResponse'
+  /pullreport:
+    get:
+      operationId: pullReport
+      summary: Generate a Vehicle History Report
+      description: >-
+        Generate a full vehicle history report using the report ID returned
+        from the /query endpoint. Returns comprehensive title history, accident
+        records, salvage data, theft records, and brand checks. Supports JSON,
+        XML, and PDF output formats.
+      parameters:
+        - name: id
+          in: query
+          required: true
+          description: Report identifier returned from the /query endpoint
+          schema:
+            type: string
+            example: S41149125266
+        - name: vin
+          in: query
+          required: true
+          description: 17-character Vehicle Identification Number
+          schema:
+            type: string
+            example: 1VXBR12EXCP901214
+        - name: user
+          in: query
+          required: true
+          description: API username credential
+          schema:
+            type: string
+            example: va
+        - name: pass
+          in: query
+          required: true
+          description: API password credential
+          schema:
+            type: string
+        - name: key
+          in: query
+          required: true
+          description: API authentication key
+          schema:
+            type: string
+        - name: format
+          in: query
+          required: true
+          description: Response format
+          schema:
+            type: string
+            enum:
+              - json
+              - xml
+              - pdf
+        - name: mode
+          in: query
+          required: false
+          description: Set to test for test mode
+          schema:
+            type: string
+            enum:
+              - test
+        - name: type
+          in: query
+          required: false
+          description: PDF type (PDF only)
+          schema:
+            type: string
+            enum:
+              - USA
+              - CAN
+        - name: brand
+          in: query
+          required: false
+          description: Include brand codes in PDF (PDF only)
+          schema:
+            type: integer
+            enum:
+              - 0
+              - 1
+        - name: lang
+          in: query
+          required: false
+          description: PDF language (PDF only)
+          schema:
+            type: string
+            enum:
+              - en
+              - es
+        - name: callback
+          in: query
+          required: false
+          description: JSONP callback function name (JSON only)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Full vehicle history report
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoryReportResponse'
+    post:
+      operationId: pullReportPost
+      summary: Generate a Vehicle History Report (POST)
+      description: Generate a full vehicle history report using POST method.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - id
+                - vin
+                - user
+                - pass
+                - key
+                - format
+              properties:
+                id:
+                  type: string
+                vin:
+                  type: string
+                user:
+                  type: string
+                pass:
+                  type: string
+                key:
+                  type: string
+                format:
+                  type: string
+                  enum:
+                    - json
+                    - xml
+                    - pdf
+                mode:
+                  type: string
+                type:
+                  type: string
+                brand:
+                  type: integer
+                lang:
+                  type: string
+                callback:
+                  type: string
+      responses:
+        '200':
+          description: Full vehicle history report
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoryReportResponse'
+  /report:
+    get:
+      operationId: viewReport
+      summary: View a Generated Vehicle History Report
+      description: >-
+        Retrieve a previously generated vehicle history report by its report ID.
+        Returns the full dataset including title history, accident records,
+        salvage information, and brand checks.
+      parameters:
+        - name: id
+          in: query
+          required: true
+          description: Report identifier from a previous /query or /pullreport call
+          schema:
+            type: string
+            example: '182896361699'
+        - name: key
+          in: query
+          required: true
+          description: API authentication key
+          schema:
+            type: string
+        - name: format
+          in: query
+          required: true
+          description: Response format
+          schema:
+            type: string
+            enum:
+              - json
+              - xml
+              - pdf
+        - name: type
+          in: query
+          required: false
+          description: PDF type (PDF only)
+          schema:
+            type: string
+            enum:
+              - USA
+              - CAN
+        - name: brand
+          in: query
+          required: false
+          description: Include brand codes in PDF (PDF only)
+          schema:
+            type: integer
+        - name: lang
+          in: query
+          required: false
+          description: PDF language (PDF only)
+          schema:
+            type: string
+            enum:
+              - en
+              - es
+        - name: skipspec
+          in: query
+          required: false
+          description: Set to 1 to skip vehicle specifications
+          schema:
+            type: integer
+        - name: mode
+          in: query
+          required: false
+          description: Set to test for test mode
+          schema:
+            type: string
+            enum:
+              - test
+        - name: callback
+          in: query
+          required: false
+          description: JSONP callback function name (JSON only)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Vehicle history report
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoryReportResponse'
+components:
+  schemas:
+    VehicleAttributes:
+      type: object
+      description: Basic vehicle attributes decoded from VIN
+      properties:
+        make:
+          type: string
+          description: Vehicle make
+          example: TOYOTA
+        model:
+          type: string
+          description: Vehicle model
+          example: COROLLA CE
+        year:
+          type: string
+          description: Vehicle model year
+          example: '2005'
+        engine:
+          type: string
+          description: Engine specifications
+        style:
+          type: string
+          description: Vehicle body style
+        made_in:
+          type: string
+          description: Country of manufacture
+        type:
+          type: string
+          description: Vehicle type classification
+    QueryResponse:
+      type: object
+      description: Response from VIN query endpoint
+      properties:
+        vin:
+          type: string
+          description: Vehicle Identification Number
+          example: 1VXBR12EXCP901214
+        id:
+          type: string
+          description: Unique report identifier for use in /pullreport
+          example: S41149125266
+        attributes:
+          $ref: '#/components/schemas/VehicleAttributes'
+        success:
+          type: boolean
+          description: Whether the query was successful
+        error:
+          type: string
+          description: Error code or empty string if no error
+          enum:
+            - ''
+            - invalid_vin
+            - failed_request
+            - unauthorized_request
+    TitleRecord:
+      type: object
+      description: A single title record entry
+      properties:
+        date:
+          type: string
+          format: date
+          description: Date of title record
+        state:
+          type: string
+          description: Two-letter state code
+        odometer:
+          type: integer
+          description: Odometer reading at time of title
+        brand:
+          type: string
+          description: Title brand if any
+    HistoryReportResponse:
+      type: object
+      description: Full vehicle history report
+      properties:
+        id:
+          type: string
+          description: Report identifier
+        vin:
+          type: string
+          description: Vehicle Identification Number
+        date:
+          type: string
+          description: Report generation timestamp
+        attributes:
+          $ref: '#/components/schemas/VehicleAttributes'
+        titles:
+          type: array
+          description: Array of title records
+          items:
+            $ref: '#/components/schemas/TitleRecord'
+        jsi:
+          type: array
+          description: Junk, salvage, and insurance records
+          items:
+            type: object
+        lie:
+          type: array
+          description: Lien, impound, and export records
+          items:
+            type: object
+        thefts:
+          type: array
+          description: Theft and recovery records
+          items:
+            type: object
+        accidents:
+          type: array
+          description: Accident history records
+          items:
+            type: object
+        salvage:
+          type: array
+          description: Salvage auction records
+          items:
+            type: object
+        sale:
+          type: array
+          description: Past sale listings
+          items:
+            type: object
+        checks:
+          type: array
+          description: Title brand check records
+          items:
+            type: object
+        canada_registrations:
+          type: array
+          description: Canadian registration data
+          items:
+            type: object
+        canada_recalls:
+          type: array
+          description: Canadian recall information
+          items:
+            type: object
+        canada_thefts:
+          type: array
+          description: Canadian theft records
+          items:
+            type: object
+        clean:
+          type: boolean
+          description: True if vehicle is free of brands, salvage, and insurance records
+        success:
+          type: boolean
+          description: Whether the report was generated successfully
+        error:
+          type: string
+          description: Error code or empty string
+          enum:
+            - ''
+            - invalid_vin
+            - failed_request
+            - unauthorized_request
+            - incomplete_report
+            - expired_report
+            - missing_report

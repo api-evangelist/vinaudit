@@ -1,0 +1,324 @@
+openapi: 3.0.3
+info:
+  title: VINaudit Vehicle Market Value API
+  description: >-
+    Estimate the current market value of a vehicle using aggregated data from
+    millions of recent sale listings. Returns low, average, and high-end values
+    with a statistical certainty score. Supports retail, wholesale, and trade-in
+    valuations for vehicles in the US and Canada.
+  version: '2.0'
+  contact:
+    name: VINaudit Support
+    url: https://www.vinaudit.com/vehicle-data-api
+  license:
+    name: Commercial
+    url: https://www.vinaudit.com/vehicle-market-value-api
+servers:
+  - url: https://marketvalue.vinaudit.com/v2
+    description: VINaudit Vehicle Market Value API v2
+paths:
+  /marketvalue:
+    get:
+      operationId: getMarketValue
+      summary: Get Vehicle Market Value
+      description: >-
+        Estimate the current market value of a vehicle by VIN or vehicle ID.
+        Returns average, above-market, and below-market price estimates along
+        with a statistical certainty score based on recent sale listings.
+        Supports optional mileage, condition, sale type, and damage adjustments.
+      parameters:
+        - name: key
+          in: query
+          required: true
+          description: API authentication key
+          schema:
+            type: string
+            example: YOUR_API_KEY_HERE
+        - name: vin
+          in: query
+          required: false
+          description: >-
+            17-character Vehicle Identification Number. Required if not
+            providing id parameter.
+          schema:
+            type: string
+            example: 2T1BURHE3EC020936
+        - name: id
+          in: query
+          required: false
+          description: >-
+            Vehicle ID in year_make_model_trim format. Required if not
+            providing vin parameter.
+          schema:
+            type: string
+            example: 2014_toyota_corolla_s
+        - name: format
+          in: query
+          required: false
+          description: Response format
+          schema:
+            type: string
+            enum:
+              - json
+              - xml
+              - html
+            default: json
+        - name: mileage
+          in: query
+          required: false
+          description: Vehicle mileage to adjust valuation
+          schema:
+            type: integer
+            example: 90000
+        - name: period
+          in: query
+          required: false
+          description: Number of days of sale history to include in valuation (1-365)
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 365
+            example: 90
+        - name: type
+          in: query
+          required: false
+          description: Market valuation type
+          schema:
+            type: string
+            enum:
+              - retail
+              - wholesale
+              - tradein
+            default: retail
+        - name: condition
+          in: query
+          required: false
+          description: Vehicle condition for valuation adjustment
+          schema:
+            type: string
+            enum:
+              - average
+              - like_new
+              - not_great
+            default: average
+        - name: known_damage
+          in: query
+          required: false
+          description: Known damage history to apply as a valuation adjustment
+          schema:
+            type: string
+            enum:
+              - frame_damage
+              - airbags_deployed
+              - salvage
+              - brand
+              - rollback
+              - minor_damage
+              - lemon
+              - rental
+              - prior_theft
+        - name: country
+          in: query
+          required: false
+          description: Country for valuation data
+          schema:
+            type: string
+            enum:
+              - usa
+              - canada
+            default: usa
+      responses:
+        '200':
+          description: Vehicle market value response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketValueResponse'
+              example:
+                vin: 2T1BURHE3EC020936
+                success: true
+                id: 2014_toyota_corolla_s
+                vehicle: 2014 Toyota Corolla S
+                mean: 10882.53
+                stdev: 2396
+                count: 255
+                mileage: 129598
+                certainty: 99
+                period:
+                  - '2025-08-17'
+                  - '2025-10-06'
+                prices:
+                  above: 13279.11
+                  average: 10882.53
+                  below: 8485.95
+                adjustments:
+                  mileage:
+                    adjustment: 0
+                    average: 129598.16
+                    input: 129598.16
+                  history:
+                    records: []
+                    adjustment: 0
+                  condition:
+                    input: null
+                    adjustment: 0
+                  known_damage:
+                    input: null
+                    adjustment: 0
+                type: retail
+components:
+  schemas:
+    PriceRange:
+      type: object
+      description: Price range estimates
+      properties:
+        above:
+          type: number
+          description: Above-market price estimate
+          example: 13279.11
+        average:
+          type: number
+          description: Average market price estimate
+          example: 10882.53
+        below:
+          type: number
+          description: Below-market price estimate
+          example: 8485.95
+    PriceDistributionBucket:
+      type: object
+      description: A price range bucket for distribution histogram
+      properties:
+        min:
+          type: number
+          description: Minimum price in bucket
+        max:
+          type: number
+          description: Maximum price in bucket
+        count:
+          type: integer
+          description: Number of sales in this price range
+    MileageAdjustment:
+      type: object
+      properties:
+        adjustment:
+          type: number
+          description: Dollar adjustment applied for mileage
+        average:
+          type: number
+          description: Average mileage for this vehicle
+        input:
+          type: number
+          description: Input mileage used for calculation
+    HistoryAdjustment:
+      type: object
+      properties:
+        records:
+          type: array
+          description: Relevant history records
+          items:
+            type: object
+        adjustment:
+          type: number
+          description: Dollar adjustment applied for history
+    ConditionAdjustment:
+      type: object
+      properties:
+        input:
+          type: string
+          nullable: true
+          description: Condition input provided
+        adjustment:
+          type: number
+          description: Dollar adjustment applied for condition
+    DamageAdjustment:
+      type: object
+      properties:
+        input:
+          type: string
+          nullable: true
+          description: Known damage type provided
+        adjustment:
+          type: number
+          description: Dollar adjustment applied for damage
+    Adjustments:
+      type: object
+      description: Valuation adjustments applied
+      properties:
+        mileage:
+          $ref: '#/components/schemas/MileageAdjustment'
+        history:
+          $ref: '#/components/schemas/HistoryAdjustment'
+        condition:
+          $ref: '#/components/schemas/ConditionAdjustment'
+        known_damage:
+          $ref: '#/components/schemas/DamageAdjustment'
+    MarketValueResponse:
+      type: object
+      description: Vehicle market value API response
+      properties:
+        success:
+          type: boolean
+          description: Whether the valuation was successful
+        vin:
+          type: string
+          description: Vehicle Identification Number
+        id:
+          type: string
+          description: Unique YMMT vehicle identifier
+          example: 2014_toyota_corolla_s
+        vehicle:
+          type: string
+          description: Full vehicle description (Year Make Model Trim)
+          example: 2014 Toyota Corolla S
+        mean:
+          type: number
+          description: Average market price estimate
+          example: 10882.53
+        stdev:
+          type: number
+          description: Standard deviation of prices in dataset
+          example: 2396
+        count:
+          type: integer
+          description: Number of data points (sale listings) used in calculation
+          example: 255
+        mileage:
+          type: integer
+          description: Mileage used in valuation
+          example: 129598
+        certainty:
+          type: integer
+          description: Statistical confidence percentage (0-100)
+          minimum: 0
+          maximum: 100
+          example: 99
+        period:
+          type: array
+          description: Date range of sale data used (start date, end date)
+          items:
+            type: string
+            format: date
+          minItems: 2
+          maxItems: 2
+        prices:
+          $ref: '#/components/schemas/PriceRange'
+        adjustments:
+          $ref: '#/components/schemas/Adjustments'
+        type:
+          type: string
+          description: Market valuation type applied
+          enum:
+            - retail
+            - wholesale
+            - tradein
+        error:
+          type: string
+          description: Error code or empty string
+          enum:
+            - ''
+            - invalid_key
+            - rate_limit_exceeded
+            - no_data
+            - invalid_vehicle
+            - invalid_request
+            - internal_error

@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VINaudit Vehicle History Getownershipcost.php Report API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Report",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "View a Generated Vehicle History Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.vinaudit.com/v2/report",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Report identifier from a previous /query or /pullreport call"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "API authentication key"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "PDF type (PDF only)"
+              },
+              {
+                "name": "brand",
+                "value": "",
+                "type": "query",
+                "description": "Include brand codes in PDF (PDF only)"
+              },
+              {
+                "name": "lang",
+                "value": "",
+                "type": "query",
+                "description": "PDF language (PDF only)"
+              },
+              {
+                "name": "skipspec",
+                "value": "",
+                "type": "query",
+                "description": "Set to 1 to skip vehicle specifications"
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "Set to test for test mode"
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP callback function name (JSON only)"
+              }
+            ]
+          },
+          "docs": "Retrieve a previously generated vehicle history report by its report ID. Returns the full dataset including title history, accident records, salvage information, and brand checks."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

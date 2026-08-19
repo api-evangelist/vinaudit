@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VINaudit Vehicle History Getownershipcost.php Marketvalue API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Marketvalue",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Vehicle Market Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.vinaudit.com/v2/marketvalue",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "API authentication key"
+              },
+              {
+                "name": "vin",
+                "value": "",
+                "type": "query",
+                "description": "17-character Vehicle Identification Number. Required if not providing id parameter."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Vehicle ID in year_make_model_trim format. Required if not providing vin parameter."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "mileage",
+                "value": "",
+                "type": "query",
+                "description": "Vehicle mileage to adjust valuation"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query",
+                "description": "Number of days of sale history to include in valuation (1-365)"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Market valuation type"
+              },
+              {
+                "name": "condition",
+                "value": "",
+                "type": "query",
+                "description": "Vehicle condition for valuation adjustment"
+              },
+              {
+                "name": "known_damage",
+                "value": "",
+                "type": "query",
+                "description": "Known damage history to apply as a valuation adjustment"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Country for valuation data"
+              }
+            ]
+          },
+          "docs": "Estimate the current market value of a vehicle by VIN or vehicle ID. Returns average, above-market, and below-market price estimates along with a statistical certainty score based on recent sale listings. Supports optional mileage, condition, sale type, and damage adjustments."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

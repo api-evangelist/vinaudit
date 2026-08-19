@@ -1,0 +1,157 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VINaudit Vehicle History Getownershipcost.php Pullreport API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pullreport",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate a Vehicle History Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.vinaudit.com/v2/pullreport",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Report identifier returned from the /query endpoint"
+              },
+              {
+                "name": "vin",
+                "value": "",
+                "type": "query",
+                "description": "17-character Vehicle Identification Number"
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query",
+                "description": "API username credential"
+              },
+              {
+                "name": "pass",
+                "value": "",
+                "type": "query",
+                "description": "API password credential"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "API authentication key"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "Set to test for test mode"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "PDF type (PDF only)"
+              },
+              {
+                "name": "brand",
+                "value": "",
+                "type": "query",
+                "description": "Include brand codes in PDF (PDF only)"
+              },
+              {
+                "name": "lang",
+                "value": "",
+                "type": "query",
+                "description": "PDF language (PDF only)"
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP callback function name (JSON only)"
+              }
+            ]
+          },
+          "docs": "Generate a full vehicle history report using the report ID returned from the /query endpoint. Returns comprehensive title history, accident records, salvage data, theft records, and brand checks. Supports JSON, XML, and PDF output formats."
+        },
+        {
+          "info": {
+            "name": "Generate a Vehicle History Report (POST)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.vinaudit.com/v2/pullreport",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "id",
+                  "value": ""
+                },
+                {
+                  "name": "vin",
+                  "value": ""
+                },
+                {
+                  "name": "user",
+                  "value": ""
+                },
+                {
+                  "name": "pass",
+                  "value": ""
+                },
+                {
+                  "name": "key",
+                  "value": ""
+                },
+                {
+                  "name": "format",
+                  "value": ""
+                },
+                {
+                  "name": "mode",
+                  "value": ""
+                },
+                {
+                  "name": "type",
+                  "value": ""
+                },
+                {
+                  "name": "brand",
+                  "value": ""
+                },
+                {
+                  "name": "lang",
+                  "value": ""
+                },
+                {
+                  "name": "callback",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Generate a full vehicle history report using POST method."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,204 @@
+{
+  "item": [
+    {
+      "id": "3e24fb2d-b01b-4477-a6a7-e7884e652703",
+      "name": "Selections",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7c0a9954-db4e-4c04-a038-0d7cba0b6a98",
+          "name": "Get Vehicle Selections",
+          "request": {
+            "name": "Get Vehicle Selections",
+            "description": {
+              "content": "Retrieve lists of available years, makes, models, and trims. Supports filtering by providing partial YMMT parameters. Use the list parameter to control how many hierarchy levels are returned. Use the collection parameter to filter by market status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "selections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) API authentication key"
+                },
+                {
+                  "disabled": false,
+                  "key": "list",
+                  "value": "<string>",
+                  "description": "Controls which YMMT hierarchy levels to return. Can be year, year+make, year+make+model, or year+make+model+trim."
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "Vehicle ID to filter selections"
+                },
+                {
+                  "disabled": false,
+                  "key": "year",
+                  "value": "<integer>",
+                  "description": "Filter by year"
+                },
+                {
+                  "disabled": false,
+                  "key": "make",
+                  "value": "<string>",
+                  "description": "Filter by make"
+                },
+                {
+                  "disabled": false,
+                  "key": "model",
+                  "value": "<string>",
+                  "description": "Filter by model"
+                },
+                {
+                  "disabled": false,
+                  "key": "trim",
+                  "value": "<string>",
+                  "description": "Filter by trim"
+                },
+                {
+                  "disabled": false,
+                  "key": "style",
+                  "value": "<string>",
+                  "description": "Filter by body style"
+                },
+                {
+                  "disabled": false,
+                  "key": "collection",
+                  "value": "<string>",
+                  "description": "Filter by market availability"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Response format"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "67e20e0a-8f3d-4a0d-9155-36152f284e37",
+              "name": "Vehicle selections response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "selections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "YOUR_API_KEY_HERE"
+                    },
+                    {
+                      "key": "list",
+                      "value": "year+make+model"
+                    },
+                    {
+                      "key": "id",
+                      "value": "2013_subaru_outback"
+                    },
+                    {
+                      "key": "year",
+                      "value": "2013"
+                    },
+                    {
+                      "key": "make",
+                      "value": "subaru"
+                    },
+                    {
+                      "key": "model",
+                      "value": "outback"
+                    },
+                    {
+                      "key": "trim",
+                      "value": "base"
+                    },
+                    {
+                      "key": "style",
+                      "value": "wagon"
+                    },
+                    {
+                      "key": "collection",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"selections\": {\n    \"years\": [\n      {\n        \"name\": 2013,\n        \"id\": \"2013\",\n        \"makes\": [\n          {\n            \"name\": \"Subaru\",\n            \"id\": \"2013_subaru\",\n            \"models\": [\n              {\n                \"name\": \"Outback\",\n                \"id\": \"2013_subaru_outback\",\n                \"trims\": [\n                  {\n                    \"name\": \"2.5i\",\n                    \"id\": \"2013_subaru_outback_25i\"\n                  },\n                  {\n                    \"name\": \"Base\",\n                    \"id\": \"2013_subaru_outback_base\"\n                  }\n                ]\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.vinaudit.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "845aee0d-3eee-4749-9189-85e4ebdced19",
+    "name": "VINaudit Vehicle History Getownershipcost.php Selections API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access raw vehicle history data sourced from NMVTIS and other providers covering title records, odometer readings, accident records, salvage information, theft records, and junk/salvage brands for vehicles in the US and Canada. VINaudit is an NMVTIS-approved data provider.\n\nContact Support:\n Name: VINaudit Support",
+      "type": "text/plain"
+    }
+  }
+}

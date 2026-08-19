@@ -1,0 +1,437 @@
+{
+  "item": [
+    {
+      "id": "cd4f40fe-ad62-4b1b-80d5-d342a3c3dc9a",
+      "name": "Pullreport",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6d8e2224-e4fd-4e3f-bd23-58c09be407bd",
+          "name": "Generate a Vehicle History Report",
+          "request": {
+            "name": "Generate a Vehicle History Report",
+            "description": {
+              "content": "Generate a full vehicle history report using the report ID returned from the /query endpoint. Returns comprehensive title history, accident records, salvage data, theft records, and brand checks. Supports JSON, XML, and PDF output formats.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pullreport"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) Report identifier returned from the /query endpoint"
+                },
+                {
+                  "disabled": false,
+                  "key": "vin",
+                  "value": "<string>",
+                  "description": "(Required) 17-character Vehicle Identification Number"
+                },
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "(Required) API username credential"
+                },
+                {
+                  "disabled": false,
+                  "key": "pass",
+                  "value": "<string>",
+                  "description": "(Required) API password credential"
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) API authentication key"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "(Required) Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "<string>",
+                  "description": "Set to test for test mode"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "PDF type (PDF only)"
+                },
+                {
+                  "disabled": false,
+                  "key": "brand",
+                  "value": "<integer>",
+                  "description": "Include brand codes in PDF (PDF only)"
+                },
+                {
+                  "disabled": false,
+                  "key": "lang",
+                  "value": "<string>",
+                  "description": "PDF language (PDF only)"
+                },
+                {
+                  "disabled": false,
+                  "key": "callback",
+                  "value": "<string>",
+                  "description": "JSONP callback function name (JSON only)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d1662032-eb21-439f-9181-5656821b276d",
+              "name": "Full vehicle history report",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pullreport"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "S41149125266"
+                    },
+                    {
+                      "key": "vin",
+                      "value": "1VXBR12EXCP901214"
+                    },
+                    {
+                      "key": "user",
+                      "value": "va"
+                    },
+                    {
+                      "key": "pass",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "brand",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "lang",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"vin\": \"string\",\n  \"date\": \"string\",\n  \"attributes\": {\n    \"make\": \"TOYOTA\",\n    \"model\": \"COROLLA CE\",\n    \"year\": \"2005\",\n    \"engine\": \"string\",\n    \"style\": \"string\",\n    \"made_in\": \"string\",\n    \"type\": \"string\"\n  },\n  \"titles\": [\n    {\n      \"date\": \"1955-10-01\",\n      \"state\": \"string\",\n      \"odometer\": 5296,\n      \"brand\": \"string\"\n    },\n    {\n      \"date\": \"1982-06-18\",\n      \"state\": \"string\",\n      \"odometer\": 9415,\n      \"brand\": \"string\"\n    }\n  ],\n  \"clean\": false,\n  \"success\": true,\n  \"error\": \"invalid_vin\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c5007aca-3c85-40d3-8962-7725edaa5810",
+          "name": "Generate a Vehicle History Report (POST)",
+          "request": {
+            "name": "Generate a Vehicle History Report (POST)",
+            "description": {
+              "content": "Generate a full vehicle history report using POST method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pullreport"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "vin",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "pass",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "brand",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lang",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "callback",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c5c9db81-6e4d-4413-9f95-1a527c7215fd",
+              "name": "Full vehicle history report",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pullreport"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "vin",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "pass",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "brand",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "lang",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"vin\": \"string\",\n  \"date\": \"string\",\n  \"attributes\": {\n    \"make\": \"TOYOTA\",\n    \"model\": \"COROLLA CE\",\n    \"year\": \"2005\",\n    \"engine\": \"string\",\n    \"style\": \"string\",\n    \"made_in\": \"string\",\n    \"type\": \"string\"\n  },\n  \"titles\": [\n    {\n      \"date\": \"2021-12-28\",\n      \"state\": \"string\",\n      \"odometer\": 7786,\n      \"brand\": \"string\"\n    },\n    {\n      \"date\": \"1957-02-10\",\n      \"state\": \"string\",\n      \"odometer\": 2306,\n      \"brand\": \"string\"\n    }\n  ],\n  \"clean\": true,\n  \"success\": true,\n  \"error\": \"invalid_vin\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.vinaudit.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0a46abbd-746d-4ef9-8bfc-c8b88204110f",
+    "name": "VINaudit Vehicle History Getownershipcost.php Pullreport API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access raw vehicle history data sourced from NMVTIS and other providers covering title records, odometer readings, accident records, salvage information, theft records, and junk/salvage brands for vehicles in the US and Canada. VINaudit is an NMVTIS-approved data provider.\n\nContact Support:\n Name: VINaudit Support",
+      "type": "text/plain"
+    }
+  }
+}

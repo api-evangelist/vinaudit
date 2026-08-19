@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VINaudit Vehicle History Getownershipcost.php Specifications API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Specifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Vehicle Specifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.vinaudit.com/v2/specifications",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "API authentication key"
+              },
+              {
+                "name": "vin",
+                "value": "",
+                "type": "query",
+                "description": "17-character Vehicle Identification Number. Required if not providing id or YMMT parameters."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Vehicle ID string in year_make_model_trim format. Required if not providing vin or YMMT parameters."
+              },
+              {
+                "name": "year",
+                "value": "",
+                "type": "query",
+                "description": "Vehicle model year. Required for YMMT lookup."
+              },
+              {
+                "name": "make",
+                "value": "",
+                "type": "query",
+                "description": "Vehicle make (lowercase). Required for YMMT lookup."
+              },
+              {
+                "name": "model",
+                "value": "",
+                "type": "query",
+                "description": "Vehicle model (lowercase). Required for YMMT lookup."
+              },
+              {
+                "name": "trim",
+                "value": "",
+                "type": "query",
+                "description": "Vehicle trim level (lowercase). Optional for YMMT lookup."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of data sections to include in response. If omitted, all sections are returned."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Retrieve standardized vehicle specifications. Supports three lookup methods: by VIN, by vehicle ID string, or by year/make/model/trim (YMMT). Use the include parameter to filter which data sections are returned."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

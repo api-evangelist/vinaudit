@@ -1,0 +1,127 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VINaudit Vehicle History Getownershipcost.php Query API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Query",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query a VIN for Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.vinaudit.com/v2/query",
+            "params": [
+              {
+                "name": "vin",
+                "value": "",
+                "type": "query",
+                "description": "17-character Vehicle Identification Number"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "API authentication key"
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query",
+                "description": "API username credential"
+              },
+              {
+                "name": "pass",
+                "value": "",
+                "type": "query",
+                "description": "API password credential"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "skipspec",
+                "value": "",
+                "type": "query",
+                "description": "Set to 1 to skip vehicle specifications in response"
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "Set to test for test mode requests"
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP callback function name"
+              }
+            ]
+          },
+          "docs": "Initialize a vehicle history lookup by VIN. Returns basic vehicle attributes and a report ID that can be used to pull the full history report. Supports test mode via the mode parameter."
+        },
+        {
+          "info": {
+            "name": "Query a VIN for Records (POST)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.vinaudit.com/v2/query",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "vin",
+                  "value": ""
+                },
+                {
+                  "name": "key",
+                  "value": ""
+                },
+                {
+                  "name": "user",
+                  "value": ""
+                },
+                {
+                  "name": "pass",
+                  "value": ""
+                },
+                {
+                  "name": "format",
+                  "value": ""
+                },
+                {
+                  "name": "skipspec",
+                  "value": ""
+                },
+                {
+                  "name": "mode",
+                  "value": ""
+                },
+                {
+                  "name": "callback",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Initialize a vehicle history lookup by VIN using POST method. Returns basic vehicle attributes and a report ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

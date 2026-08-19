@@ -1,0 +1,194 @@
+{
+  "item": [
+    {
+      "id": "30d47958-8e1d-4907-9c6a-fd6a511b860d",
+      "name": "Specifications",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "45e41573-5d28-4817-8fe1-0108c9aba6ae",
+          "name": "Get Vehicle Specifications",
+          "request": {
+            "name": "Get Vehicle Specifications",
+            "description": {
+              "content": "Retrieve standardized vehicle specifications. Supports three lookup methods: by VIN, by vehicle ID string, or by year/make/model/trim (YMMT). Use the include parameter to filter which data sections are returned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "specifications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) API authentication key"
+                },
+                {
+                  "disabled": false,
+                  "key": "vin",
+                  "value": "<string>",
+                  "description": "17-character Vehicle Identification Number. Required if not providing id or YMMT parameters."
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "Vehicle ID string in year_make_model_trim format. Required if not providing vin or YMMT parameters."
+                },
+                {
+                  "disabled": false,
+                  "key": "year",
+                  "value": "<integer>",
+                  "description": "Vehicle model year. Required for YMMT lookup."
+                },
+                {
+                  "disabled": false,
+                  "key": "make",
+                  "value": "<string>",
+                  "description": "Vehicle make (lowercase). Required for YMMT lookup."
+                },
+                {
+                  "disabled": false,
+                  "key": "model",
+                  "value": "<string>",
+                  "description": "Vehicle model (lowercase). Required for YMMT lookup."
+                },
+                {
+                  "disabled": false,
+                  "key": "trim",
+                  "value": "<string>",
+                  "description": "Vehicle trim level (lowercase). Optional for YMMT lookup."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "Comma-separated list of data sections to include in response. If omitted, all sections are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Response format"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cdb5dffa-7b3f-4082-b51a-1a55b5d551d6",
+              "name": "Vehicle specifications response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "specifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "YOUR_API_KEY_HERE"
+                    },
+                    {
+                      "key": "vin",
+                      "value": "1NXBR32E85Z505904"
+                    },
+                    {
+                      "key": "id",
+                      "value": "2004_toyota_corolla_ce"
+                    },
+                    {
+                      "key": "year",
+                      "value": "2004"
+                    },
+                    {
+                      "key": "make",
+                      "value": "toyota"
+                    },
+                    {
+                      "key": "model",
+                      "value": "corolla"
+                    },
+                    {
+                      "key": "trim",
+                      "value": "ce"
+                    },
+                    {
+                      "key": "include",
+                      "value": "selections,attributes,equipment,colors,recalls,warranties,photos"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"input\": {\n    \"key\": \"YOUR_API_KEY_HERE\",\n    \"year\": \"2005\",\n    \"make\": \"toyota\",\n    \"model\": \"corolla\",\n    \"trim\": \"ce\",\n    \"format\": \"json\"\n  },\n  \"selections\": {\n    \"trims\": [\n      {\n        \"id\": \"2005_toyota_corolla_ce\",\n        \"name\": \"CE\",\n        \"selected\": 1,\n        \"styles\": []\n      }\n    ]\n  },\n  \"attributes\": {\n    \"year\": \"2005\",\n    \"make\": \"Toyota\",\n    \"model\": \"Corolla\",\n    \"trim\": \"CE\",\n    \"type\": \"Car\",\n    \"engine\": \"1.8-L L-4 DOHC 16V\",\n    \"fuel_type\": \"Regular Unleaded\"\n  },\n  \"success\": true,\n  \"error\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.vinaudit.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ece69499-0825-4d0d-87a8-5bce635ad345",
+    "name": "VINaudit Vehicle History Getownershipcost.php Specifications API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access raw vehicle history data sourced from NMVTIS and other providers covering title records, odometer readings, accident records, salvage information, theft records, and junk/salvage brands for vehicles in the US and Canada. VINaudit is an NMVTIS-approved data provider.\n\nContact Support:\n Name: VINaudit Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,204 @@
+{
+  "item": [
+    {
+      "id": "f9c33e2f-c2ca-4767-8b23-66b668efa90b",
+      "name": "Marketvalue",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d98088b3-1a8d-4db0-adef-c42ed438f827",
+          "name": "Get Vehicle Market Value",
+          "request": {
+            "name": "Get Vehicle Market Value",
+            "description": {
+              "content": "Estimate the current market value of a vehicle by VIN or vehicle ID. Returns average, above-market, and below-market price estimates along with a statistical certainty score based on recent sale listings. Supports optional mileage, condition, sale type, and damage adjustments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "marketvalue"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) API authentication key"
+                },
+                {
+                  "disabled": false,
+                  "key": "vin",
+                  "value": "<string>",
+                  "description": "17-character Vehicle Identification Number. Required if not providing id parameter."
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "Vehicle ID in year_make_model_trim format. Required if not providing vin parameter."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "mileage",
+                  "value": "<integer>",
+                  "description": "Vehicle mileage to adjust valuation"
+                },
+                {
+                  "disabled": false,
+                  "key": "period",
+                  "value": "<integer>",
+                  "description": "Number of days of sale history to include in valuation (1-365)"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "retail",
+                  "description": "Market valuation type"
+                },
+                {
+                  "disabled": false,
+                  "key": "condition",
+                  "value": "average",
+                  "description": "Vehicle condition for valuation adjustment"
+                },
+                {
+                  "disabled": false,
+                  "key": "known_damage",
+                  "value": "<string>",
+                  "description": "Known damage history to apply as a valuation adjustment"
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "usa",
+                  "description": "Country for valuation data"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0f387149-4b4f-4a29-bbb1-ad6f61e811b4",
+              "name": "Vehicle market value response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketvalue"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "YOUR_API_KEY_HERE"
+                    },
+                    {
+                      "key": "vin",
+                      "value": "2T1BURHE3EC020936"
+                    },
+                    {
+                      "key": "id",
+                      "value": "2014_toyota_corolla_s"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "mileage",
+                      "value": "90000"
+                    },
+                    {
+                      "key": "period",
+                      "value": "90"
+                    },
+                    {
+                      "key": "type",
+                      "value": "retail"
+                    },
+                    {
+                      "key": "condition",
+                      "value": "average"
+                    },
+                    {
+                      "key": "known_damage",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "usa"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vin\": \"2T1BURHE3EC020936\",\n  \"success\": true,\n  \"id\": \"2014_toyota_corolla_s\",\n  \"vehicle\": \"2014 Toyota Corolla S\",\n  \"mean\": 10882.53,\n  \"stdev\": 2396,\n  \"count\": 255,\n  \"mileage\": 129598,\n  \"certainty\": 99,\n  \"period\": [\n    \"2025-08-17\",\n    \"2025-10-06\"\n  ],\n  \"prices\": {\n    \"above\": 13279.11,\n    \"average\": 10882.53,\n    \"below\": 8485.95\n  },\n  \"adjustments\": {\n    \"mileage\": {\n      \"adjustment\": 0,\n      \"average\": 129598.16,\n      \"input\": 129598.16\n    },\n    \"history\": {\n      \"records\": [],\n      \"adjustment\": 0\n    },\n    \"condition\": {\n      \"input\": null,\n      \"adjustment\": 0\n    },\n    \"known_damage\": {\n      \"input\": null,\n      \"adjustment\": 0\n    }\n  },\n  \"type\": \"retail\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.vinaudit.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9d75c6f8-7460-4513-bf0a-1ab5b70cddc7",
+    "name": "VINaudit Vehicle History Getownershipcost.php Marketvalue API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access raw vehicle history data sourced from NMVTIS and other providers covering title records, odometer readings, accident records, salvage information, theft records, and junk/salvage brands for vehicles in the US and Canada. VINaudit is an NMVTIS-approved data provider.\n\nContact Support:\n Name: VINaudit Support",
+      "type": "text/plain"
+    }
+  }
+}

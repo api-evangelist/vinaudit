@@ -1,0 +1,377 @@
+{
+  "item": [
+    {
+      "id": "d4085747-1183-4d24-b7aa-7ef7d3dd38a1",
+      "name": "Query",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "66cf8627-21a4-40de-b4dc-c685877ce6bb",
+          "name": "Query a VIN for Records",
+          "request": {
+            "name": "Query a VIN for Records",
+            "description": {
+              "content": "Initialize a vehicle history lookup by VIN. Returns basic vehicle attributes and a report ID that can be used to pull the full history report. Supports test mode via the mode parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "vin",
+                  "value": "<string>",
+                  "description": "(Required) 17-character Vehicle Identification Number"
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) API authentication key"
+                },
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "(Required) API username credential"
+                },
+                {
+                  "disabled": false,
+                  "key": "pass",
+                  "value": "<string>",
+                  "description": "(Required) API password credential"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "(Required) Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "skipspec",
+                  "value": "<integer>",
+                  "description": "Set to 1 to skip vehicle specifications in response"
+                },
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "<string>",
+                  "description": "Set to test for test mode requests"
+                },
+                {
+                  "disabled": false,
+                  "key": "callback",
+                  "value": "<string>",
+                  "description": "JSONP callback function name"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1bde94f8-df38-4868-9bee-0d40b4b4a699",
+              "name": "Successful VIN query response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vin",
+                      "value": "1VXBR12EXCP901214"
+                    },
+                    {
+                      "key": "key",
+                      "value": "YOUR_API_KEY_HERE"
+                    },
+                    {
+                      "key": "user",
+                      "value": "va"
+                    },
+                    {
+                      "key": "pass",
+                      "value": "test"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "skipspec",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "OnVinQueryData"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vin\": \"1VXBR12EXCP901214\",\n  \"id\": \"S41149125266\",\n  \"attributes\": {\n    \"make\": \"TOYOTA\",\n    \"model\": \"COROLLA CE\",\n    \"year\": \"2005\"\n  },\n  \"success\": true,\n  \"error\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ffb20ca-b4b4-4031-af01-1818df8d25f3",
+          "name": "Query a VIN for Records (POST)",
+          "request": {
+            "name": "Query a VIN for Records (POST)",
+            "description": {
+              "content": "Initialize a vehicle history lookup by VIN using POST method. Returns basic vehicle attributes and a report ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "vin",
+                  "value": "<string>",
+                  "description": "(Required) 17-character Vehicle Identification Number"
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) API authentication key"
+                },
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "(Required) API username credential"
+                },
+                {
+                  "disabled": false,
+                  "key": "pass",
+                  "value": "<string>",
+                  "description": "(Required) API password credential"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "skipspec",
+                  "value": "<integer>",
+                  "description": "Set to 1 to skip specs"
+                },
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "callback",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b4f6059a-795a-476a-8b30-a8225482cb3f",
+              "name": "Successful VIN query response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) 17-character Vehicle Identification Number",
+                        "type": "text/plain"
+                      },
+                      "key": "vin",
+                      "value": "1VXBR12EXCP901214"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) API authentication key",
+                        "type": "text/plain"
+                      },
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) API username credential",
+                        "type": "text/plain"
+                      },
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) API password credential",
+                        "type": "text/plain"
+                      },
+                      "key": "pass",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Set to 1 to skip specs",
+                        "type": "text/plain"
+                      },
+                      "key": "skipspec",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vin\": \"1VXBR12EXCP901214\",\n  \"id\": \"S41149125266\",\n  \"attributes\": {\n    \"make\": \"TOYOTA\",\n    \"model\": \"COROLLA CE\",\n    \"year\": \"2005\",\n    \"engine\": \"string\",\n    \"style\": \"string\",\n    \"made_in\": \"string\",\n    \"type\": \"string\"\n  },\n  \"success\": false,\n  \"error\": \"invalid_vin\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.vinaudit.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ead87bc8-4df0-4ef6-a714-eabc2e2ba879",
+    "name": "VINaudit Vehicle History Getownershipcost.php Query API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access raw vehicle history data sourced from NMVTIS and other providers covering title records, odometer readings, accident records, salvage information, theft records, and junk/salvage brands for vehicles in the US and Canada. VINaudit is an NMVTIS-approved data provider.\n\nContact Support:\n Name: VINaudit Support",
+      "type": "text/plain"
+    }
+  }
+}

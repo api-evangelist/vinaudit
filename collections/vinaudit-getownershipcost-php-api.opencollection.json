@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VINaudit Vehicle History Getownershipcost.php API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Getownershipcost.php",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Vehicle 5-Year Ownership Cost",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.vinaudit.com/v2/getownershipcost.php",
+            "params": [
+              {
+                "name": "vin",
+                "value": "",
+                "type": "query",
+                "description": "17-character Vehicle Identification Number"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "API authentication key"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Two-letter US state code for location-specific tax and fee calculation"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Calculate the estimated 5-year total cost of ownership for a vehicle identified by VIN. Returns itemized yearly cost arrays for depreciation, insurance, fuel, maintenance, repairs, and state fees/taxes, plus a cumulative 5-year total. The state parameter is required to apply location-specific fee and tax calculations."
+        },
+        {
+          "info": {
+            "name": "Get Vehicle 5-Year Ownership Cost (POST)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.vinaudit.com/v2/getownershipcost.php",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "vin",
+                  "value": ""
+                },
+                {
+                  "name": "key",
+                  "value": ""
+                },
+                {
+                  "name": "state",
+                  "value": ""
+                },
+                {
+                  "name": "format",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Calculate the estimated 5-year total cost of ownership using POST method."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

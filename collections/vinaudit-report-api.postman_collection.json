@@ -1,0 +1,194 @@
+{
+  "item": [
+    {
+      "id": "49ae8b09-8ab5-4198-9626-a25bbda39562",
+      "name": "Report",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "452f56fb-b205-4e97-806e-33f27090d74f",
+          "name": "View a Generated Vehicle History Report",
+          "request": {
+            "name": "View a Generated Vehicle History Report",
+            "description": {
+              "content": "Retrieve a previously generated vehicle history report by its report ID. Returns the full dataset including title history, accident records, salvage information, and brand checks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "report"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) Report identifier from a previous /query or /pullreport call"
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) API authentication key"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "(Required) Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "PDF type (PDF only)"
+                },
+                {
+                  "disabled": false,
+                  "key": "brand",
+                  "value": "<integer>",
+                  "description": "Include brand codes in PDF (PDF only)"
+                },
+                {
+                  "disabled": false,
+                  "key": "lang",
+                  "value": "<string>",
+                  "description": "PDF language (PDF only)"
+                },
+                {
+                  "disabled": false,
+                  "key": "skipspec",
+                  "value": "<integer>",
+                  "description": "Set to 1 to skip vehicle specifications"
+                },
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "<string>",
+                  "description": "Set to test for test mode"
+                },
+                {
+                  "disabled": false,
+                  "key": "callback",
+                  "value": "<string>",
+                  "description": "JSONP callback function name (JSON only)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f45eeb1-1d73-4d5b-9e3a-68dbd309ea5e",
+              "name": "Vehicle history report",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "182896361699"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "brand",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "lang",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skipspec",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"vin\": \"string\",\n  \"date\": \"string\",\n  \"attributes\": {\n    \"make\": \"TOYOTA\",\n    \"model\": \"COROLLA CE\",\n    \"year\": \"2005\",\n    \"engine\": \"string\",\n    \"style\": \"string\",\n    \"made_in\": \"string\",\n    \"type\": \"string\"\n  },\n  \"titles\": [\n    {\n      \"date\": \"2005-02-07\",\n      \"state\": \"string\",\n      \"odometer\": 1860,\n      \"brand\": \"string\"\n    },\n    {\n      \"date\": \"1962-01-09\",\n      \"state\": \"string\",\n      \"odometer\": 7990,\n      \"brand\": \"string\"\n    }\n  ],\n  \"clean\": false,\n  \"success\": false,\n  \"error\": \"unauthorized_request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.vinaudit.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "052cb83a-5e4e-43ec-82f3-bcf56f25b8b2",
+    "name": "VINaudit Vehicle History Getownershipcost.php Report API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access raw vehicle history data sourced from NMVTIS and other providers covering title records, odometer readings, accident records, salvage information, theft records, and junk/salvage brands for vehicles in the US and Canada. VINaudit is an NMVTIS-approved data provider.\n\nContact Support:\n Name: VINaudit Support",
+      "type": "text/plain"
+    }
+  }
+}

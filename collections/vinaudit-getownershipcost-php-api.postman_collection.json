@@ -1,0 +1,282 @@
+{
+  "item": [
+    {
+      "id": "e6c01530-743d-43f7-ae0f-d5bffe064977",
+      "name": "Getownershipcost.php",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "46b72eef-75c4-429a-95e4-8a3b72de95c7",
+          "name": "Get Vehicle 5-Year Ownership Cost",
+          "request": {
+            "name": "Get Vehicle 5-Year Ownership Cost",
+            "description": {
+              "content": "Calculate the estimated 5-year total cost of ownership for a vehicle identified by VIN. Returns itemized yearly cost arrays for depreciation, insurance, fuel, maintenance, repairs, and state fees/taxes, plus a cumulative 5-year total. The state parameter is required to apply location-specific fee and tax calculations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "getownershipcost.php"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "vin",
+                  "value": "<string>",
+                  "description": "(Required) 17-character Vehicle Identification Number"
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) API authentication key"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "(Required) Two-letter US state code for location-specific tax and fee calculation"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Response format"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a014e99b-176c-40ba-95b6-9ab25874391d",
+              "name": "Vehicle 5-year ownership cost response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getownershipcost.php"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vin",
+                      "value": "1NXBR32E85Z505904"
+                    },
+                    {
+                      "key": "key",
+                      "value": "YOUR_API_KEY_HERE"
+                    },
+                    {
+                      "key": "state",
+                      "value": "WA"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vin\": \"1NXBR32E85Z505904\",\n  \"mileage_start\": -1,\n  \"mileage_year\": 15000,\n  \"vehicle\": \"2005 Toyota Corolla CE\",\n  \"depreciation_cost\": [\n    7255.08114586802,\n    237.00894142265173,\n    7666.840204246362,\n    936.103708252325,\n    9992.147059492529\n  ],\n  \"insurance_cost\": [\n    9199.237316255849,\n    1084.7474379828514,\n    7214.024760927224,\n    2608.664152032453,\n    649.5627222907896\n  ],\n  \"fuel_cost\": [\n    5573.752397113612,\n    256.0636479063605,\n    368.19842516673805,\n    7324.095837192327,\n    1602.3502673352707\n  ],\n  \"maintenance_cost\": [\n    6432.263959223877,\n    5724.210414784547,\n    9502.438792654999,\n    4502.069033075751,\n    9956.125626389574\n  ],\n  \"repairs_cost\": [\n    2955.812285575484,\n    5634.80205937794,\n    610.9644451163099,\n    4230.2950172773435,\n    7284.827829275183\n  ],\n  \"fees_cost\": [\n    6512.582808366456,\n    2665.7512883125255,\n    9681.055860768465,\n    8042.323014220764,\n    1865.0178399873862\n  ],\n  \"total_cost\": [\n    5979.310222336791,\n    9932.991213907835,\n    8791.22555785324,\n    5509.68685852397,\n    1965.640104235199\n  ],\n  \"total_cost_sum\": 38500,\n  \"success\": false,\n  \"error\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "291262f7-50d7-447b-8d3a-9efe465393fd",
+          "name": "Get Vehicle 5-Year Ownership Cost (POST)",
+          "request": {
+            "name": "Get Vehicle 5-Year Ownership Cost (POST)",
+            "description": {
+              "content": "Calculate the estimated 5-year total cost of ownership using POST method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "getownershipcost.php"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "vin",
+                  "value": "<string>",
+                  "description": "(Required) 17-character Vehicle Identification Number"
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) API authentication key"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "(Required) Two-letter US state code"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d5177d02-38a9-43e7-9509-5679785c7a89",
+              "name": "Vehicle 5-year ownership cost response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getownershipcost.php"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) 17-character Vehicle Identification Number",
+                        "type": "text/plain"
+                      },
+                      "key": "vin",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) API authentication key",
+                        "type": "text/plain"
+                      },
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Two-letter US state code",
+                        "type": "text/plain"
+                      },
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vin\": \"1NXBR32E85Z505904\",\n  \"mileage_start\": -1,\n  \"mileage_year\": 15000,\n  \"vehicle\": \"2005 Toyota Corolla CE\",\n  \"depreciation_cost\": [\n    7255.08114586802,\n    237.00894142265173,\n    7666.840204246362,\n    936.103708252325,\n    9992.147059492529\n  ],\n  \"insurance_cost\": [\n    9199.237316255849,\n    1084.7474379828514,\n    7214.024760927224,\n    2608.664152032453,\n    649.5627222907896\n  ],\n  \"fuel_cost\": [\n    5573.752397113612,\n    256.0636479063605,\n    368.19842516673805,\n    7324.095837192327,\n    1602.3502673352707\n  ],\n  \"maintenance_cost\": [\n    6432.263959223877,\n    5724.210414784547,\n    9502.438792654999,\n    4502.069033075751,\n    9956.125626389574\n  ],\n  \"repairs_cost\": [\n    2955.812285575484,\n    5634.80205937794,\n    610.9644451163099,\n    4230.2950172773435,\n    7284.827829275183\n  ],\n  \"fees_cost\": [\n    6512.582808366456,\n    2665.7512883125255,\n    9681.055860768465,\n    8042.323014220764,\n    1865.0178399873862\n  ],\n  \"total_cost\": [\n    5979.310222336791,\n    9932.991213907835,\n    8791.22555785324,\n    5509.68685852397,\n    1965.640104235199\n  ],\n  \"total_cost_sum\": 38500,\n  \"success\": false,\n  \"error\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.vinaudit.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fb80148c-5cb5-498b-b34d-9b28e082f83b",
+    "name": "VINaudit Vehicle History Getownershipcost.php API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access raw vehicle history data sourced from NMVTIS and other providers covering title records, odometer readings, accident records, salvage information, theft records, and junk/salvage brands for vehicles in the US and Canada. VINaudit is an NMVTIS-approved data provider.\n\nContact Support:\n Name: VINaudit Support",
+      "type": "text/plain"
+    }
+  }
+}

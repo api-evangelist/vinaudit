@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VINaudit Vehicle History Getownershipcost.php Selections API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Selections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Vehicle Selections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.vinaudit.com/v2/selections",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "API authentication key"
+              },
+              {
+                "name": "list",
+                "value": "",
+                "type": "query",
+                "description": "Controls which YMMT hierarchy levels to return. Can be year, year+make, year+make+model, or year+make+model+trim."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Vehicle ID to filter selections"
+              },
+              {
+                "name": "year",
+                "value": "",
+                "type": "query",
+                "description": "Filter by year"
+              },
+              {
+                "name": "make",
+                "value": "",
+                "type": "query",
+                "description": "Filter by make"
+              },
+              {
+                "name": "model",
+                "value": "",
+                "type": "query",
+                "description": "Filter by model"
+              },
+              {
+                "name": "trim",
+                "value": "",
+                "type": "query",
+                "description": "Filter by trim"
+              },
+              {
+                "name": "style",
+                "value": "",
+                "type": "query",
+                "description": "Filter by body style"
+              },
+              {
+                "name": "collection",
+                "value": "",
+                "type": "query",
+                "description": "Filter by market availability"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Retrieve lists of available years, makes, models, and trims. Supports filtering by providing partial YMMT parameters. Use the list parameter to control how many hierarchy levels are returned. Use the collection parameter to filter by market status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

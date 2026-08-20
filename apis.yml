@@ -120,6 +120,8 @@ apis:
   humanURL: https://www.vinaudit.com/vehicle-history-api
   baseURL: https://api.vinaudit.com
   tags:
+  - Market Value
+  tags_raw:
   - Marketvalue
   properties:
   - type: OpenAPI

@@ -3,6 +3,18 @@ description: Vehicle history and VIN decoding REST API for accessing accident re
   title information, mileage history, ownership records, and NHTSA recall data for
   any US vehicle. VINaudit is an NMVTIS-approved data provider offering vehicle history,
   specifications, market value, ownership cost, and vehicle image APIs.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: unknown

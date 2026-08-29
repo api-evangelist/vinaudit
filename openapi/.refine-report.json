@@ -1,26 +1,54 @@
 {
   "provider": "vinaudit",
   "sources": [
-    "vinaudit-getownershipcost-php-api-openapi.yml",
-    "vinaudit-marketvalue-api-openapi.yml",
-    "vinaudit-pullreport-api-openapi.yml",
-    "vinaudit-query-api-openapi.yml",
-    "vinaudit-report-api-openapi.yml",
-    "vinaudit-selections-api-openapi.yml",
-    "vinaudit-specifications-api-openapi.yml"
+    "_original/vinaudit-vehicle-history-openapi.yml",
+    "_original/vinaudit-vehicle-market-value-openapi.yml",
+    "_original/vinaudit-vehicle-ownership-cost-openapi.yml",
+    "_original/vinaudit-vehicle-specifications-openapi.yml"
   ],
   "outputs": [
-    "vinaudit-getownershipcost-php-api-openapi.yml",
-    "vinaudit-marketvalue-api-openapi.yml",
     "vinaudit-pullreport-api-openapi.yml",
     "vinaudit-query-api-openapi.yml",
     "vinaudit-report-api-openapi.yml",
+    "vinaudit-marketvalue-api-openapi.yml",
+    "vinaudit-getownershipcost-php-api-openapi.yml",
     "vinaudit-selections-api-openapi.yml",
     "vinaudit-specifications-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (4 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "vinaudit-vehicle-history-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "vinaudit-vehicle-history-openapi.yml: tagged paths GET /query -> Query",
+    "vinaudit-vehicle-history-openapi.yml: tagged paths POST /query -> Query",
+    "vinaudit-vehicle-history-openapi.yml: tagged paths GET /pullreport -> Pullreport",
+    "vinaudit-vehicle-history-openapi.yml: tagged paths POST /pullreport -> Pullreport",
+    "vinaudit-vehicle-history-openapi.yml: tagged paths GET /report -> Report",
+    "vinaudit-vehicle-history-openapi.yml: declared missing tag: Pullreport",
+    "vinaudit-vehicle-history-openapi.yml: declared missing tag: Query",
+    "vinaudit-vehicle-history-openapi.yml: declared missing tag: Report",
+    "vinaudit-vehicle-market-value-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "vinaudit-vehicle-market-value-openapi.yml: tagged paths GET /marketvalue -> Marketvalue",
+    "vinaudit-vehicle-market-value-openapi.yml: declared missing tag: Marketvalue",
+    "vinaudit-vehicle-ownership-cost-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "vinaudit-vehicle-ownership-cost-openapi.yml: tagged paths GET /getownershipcost.php -> Getownershipcost.php",
+    "vinaudit-vehicle-ownership-cost-openapi.yml: tagged paths POST /getownershipcost.php -> Getownershipcost.php",
+    "vinaudit-vehicle-ownership-cost-openapi.yml: declared missing tag: Getownershipcost.php",
+    "vinaudit-vehicle-specifications-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "vinaudit-vehicle-specifications-openapi.yml: tagged paths GET /specifications -> Specifications",
+    "vinaudit-vehicle-specifications-openapi.yml: tagged paths GET /selections -> Selections",
+    "vinaudit-vehicle-specifications-openapi.yml: declared missing tag: Selections",
+    "vinaudit-vehicle-specifications-openapi.yml: declared missing tag: Specifications"
+  ],
+  "skipped": [
+    "vinaudit-getownershipcost-php-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "vinaudit-marketvalue-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "vinaudit-pullreport-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "vinaudit-query-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "vinaudit-report-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "vinaudit-selections-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "vinaudit-specifications-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

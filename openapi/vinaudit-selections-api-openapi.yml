@@ -1,17 +1,17 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: VINaudit Vehicle History Getownershipcost.php Selections API
-  description: Access raw vehicle history data sourced from NMVTIS and other providers covering title records, odometer readings, accident records, salvage information, theft records, and junk/salvage brands for vehicles in the US and Canada. VINaudit is an NMVTIS-approved data provider.
-  version: '2.0'
+  title: VINaudit Vehicle Specifications Selections API
+  description: Retrieve standardized vehicle specifications by VIN or year/make/model/trim including engine details, transmission, fuel economy, dimensions, colors, equipment, NHTSA recalls, warranties, and vehicle photos. Supports lookup by VIN, vehicle ID, or year/make/model/trim combination.
+  version: '3.0'
   contact:
     name: VINaudit Support
     url: https://www.vinaudit.com/vehicle-data-api
   license:
     name: Commercial
-    url: https://www.vinaudit.com/vehicle-history-api
+    url: https://www.vinaudit.com/vehicle-specifications-api
 servers:
-- url: https://api.vinaudit.com/v2
-  description: VINaudit Vehicle History API v2
+- url: https://specifications.vinaudit.com/v3
+  description: VINaudit Vehicle Specifications API v3
 tags:
 - name: Selections
 paths:
@@ -125,15 +125,6 @@ paths:
       - Selections
 components:
   schemas:
-    TrimEntry:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Trim name
-        id:
-          type: string
-          description: Trim identifier
     SelectionsResponse:
       type: object
       description: Vehicle selections API response
@@ -171,19 +162,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MakeEntry'
-    MakeEntry:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Make name
-        id:
-          type: string
-          description: Make identifier
-        models:
-          type: array
-          items:
-            $ref: '#/components/schemas/ModelEntry'
     ModelEntry:
       type: object
       properties:
@@ -197,3 +175,25 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TrimEntry'
+    TrimEntry:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Trim name
+        id:
+          type: string
+          description: Trim identifier
+    MakeEntry:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Make name
+        id:
+          type: string
+          description: Make identifier
+        models:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModelEntry'

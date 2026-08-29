@@ -1,17 +1,17 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: VINaudit Vehicle History Getownershipcost.php Marketvalue API
-  description: Access raw vehicle history data sourced from NMVTIS and other providers covering title records, odometer readings, accident records, salvage information, theft records, and junk/salvage brands for vehicles in the US and Canada. VINaudit is an NMVTIS-approved data provider.
+  title: VINaudit Vehicle Market Value Marketvalue API
+  description: Estimate the current market value of a vehicle using aggregated data from millions of recent sale listings. Returns low, average, and high-end values with a statistical certainty score. Supports retail, wholesale, and trade-in valuations for vehicles in the US and Canada.
   version: '2.0'
   contact:
     name: VINaudit Support
     url: https://www.vinaudit.com/vehicle-data-api
   license:
     name: Commercial
-    url: https://www.vinaudit.com/vehicle-history-api
+    url: https://www.vinaudit.com/vehicle-market-value-api
 servers:
-- url: https://api.vinaudit.com/v2
-  description: VINaudit Vehicle History API v2
+- url: https://marketvalue.vinaudit.com/v2
+  description: VINaudit Vehicle Market Value API v2
 tags:
 - name: Marketvalue
 paths:
@@ -160,77 +160,17 @@ paths:
       - Marketvalue
 components:
   schemas:
-    Adjustments:
-      type: object
-      description: Valuation adjustments applied
-      properties:
-        mileage:
-          $ref: '#/components/schemas/MileageAdjustment'
-        history:
-          $ref: '#/components/schemas/HistoryAdjustment'
-        condition:
-          $ref: '#/components/schemas/ConditionAdjustment'
-        known_damage:
-          $ref: '#/components/schemas/DamageAdjustment'
     DamageAdjustment:
       type: object
       properties:
         input:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Known damage type provided
         adjustment:
           type: number
           description: Dollar adjustment applied for damage
-    HistoryAdjustment:
-      type: object
-      properties:
-        records:
-          type: array
-          description: Relevant history records
-          items:
-            type: object
-        adjustment:
-          type: number
-          description: Dollar adjustment applied for history
-    MileageAdjustment:
-      type: object
-      properties:
-        adjustment:
-          type: number
-          description: Dollar adjustment applied for mileage
-        average:
-          type: number
-          description: Average mileage for this vehicle
-        input:
-          type: number
-          description: Input mileage used for calculation
-    ConditionAdjustment:
-      type: object
-      properties:
-        input:
-          type: string
-          nullable: true
-          description: Condition input provided
-        adjustment:
-          type: number
-          description: Dollar adjustment applied for condition
-    PriceRange:
-      type: object
-      description: Price range estimates
-      properties:
-        above:
-          type: number
-          description: Above-market price estimate
-          example: 13279.11
-        average:
-          type: number
-          description: Average market price estimate
-          example: 10882.53
-        below:
-          type: number
-          description: Below-market price estimate
-          example: 8485.95
     MarketValueResponse:
       type: object
       description: Vehicle market value API response
@@ -301,3 +241,65 @@ components:
           - invalid_vehicle
           - invalid_request
           - internal_error
+    ConditionAdjustment:
+      type: object
+      properties:
+        input:
+          type:
+          - string
+          - 'null'
+          description: Condition input provided
+        adjustment:
+          type: number
+          description: Dollar adjustment applied for condition
+    MileageAdjustment:
+      type: object
+      properties:
+        adjustment:
+          type: number
+          description: Dollar adjustment applied for mileage
+        average:
+          type: number
+          description: Average mileage for this vehicle
+        input:
+          type: number
+          description: Input mileage used for calculation
+    PriceRange:
+      type: object
+      description: Price range estimates
+      properties:
+        above:
+          type: number
+          description: Above-market price estimate
+          example: 13279.11
+        average:
+          type: number
+          description: Average market price estimate
+          example: 10882.53
+        below:
+          type: number
+          description: Below-market price estimate
+          example: 8485.95
+    Adjustments:
+      type: object
+      description: Valuation adjustments applied
+      properties:
+        mileage:
+          $ref: '#/components/schemas/MileageAdjustment'
+        history:
+          $ref: '#/components/schemas/HistoryAdjustment'
+        condition:
+          $ref: '#/components/schemas/ConditionAdjustment'
+        known_damage:
+          $ref: '#/components/schemas/DamageAdjustment'
+    HistoryAdjustment:
+      type: object
+      properties:
+        records:
+          type: array
+          description: Relevant history records
+          items:
+            type: object
+        adjustment:
+          type: number
+          description: Dollar adjustment applied for history

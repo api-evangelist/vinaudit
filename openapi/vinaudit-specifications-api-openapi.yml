@@ -1,17 +1,17 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: VINaudit Vehicle History Getownershipcost.php Specifications API
-  description: Access raw vehicle history data sourced from NMVTIS and other providers covering title records, odometer readings, accident records, salvage information, theft records, and junk/salvage brands for vehicles in the US and Canada. VINaudit is an NMVTIS-approved data provider.
-  version: '2.0'
+  title: VINaudit Vehicle Specifications API
+  description: Retrieve standardized vehicle specifications by VIN or year/make/model/trim including engine details, transmission, fuel economy, dimensions, colors, equipment, NHTSA recalls, warranties, and vehicle photos. Supports lookup by VIN, vehicle ID, or year/make/model/trim combination.
+  version: '3.0'
   contact:
     name: VINaudit Support
     url: https://www.vinaudit.com/vehicle-data-api
   license:
     name: Commercial
-    url: https://www.vinaudit.com/vehicle-history-api
+    url: https://www.vinaudit.com/vehicle-specifications-api
 servers:
-- url: https://api.vinaudit.com/v2
-  description: VINaudit Vehicle History API v2
+- url: https://specifications.vinaudit.com/v3
+  description: VINaudit Vehicle Specifications API v3
 tags:
 - name: Specifications
 paths:
@@ -122,26 +122,19 @@ paths:
       - Specifications
 components:
   schemas:
-    TrimSelection:
+    WarrantyItem:
       type: object
-      description: A trim level selection entry
+      description: A vehicle warranty
       properties:
-        id:
+        type:
           type: string
-          description: Trim identifier
-          example: 2005_toyota_corolla_ce
-        name:
-          type: string
-          description: Trim name
-          example: CE
-        selected:
+          description: Warranty type (basic, powertrain, corrosion, etc.)
+        miles:
           type: integer
-          description: Whether this trim is selected (1=yes, 0=no)
-        styles:
-          type: array
-          description: Body style variations for this trim
-          items:
-            type: object
+          description: Warranty mileage limit
+        months:
+          type: integer
+          description: Warranty time limit in months
     SpecificationsResponse:
       type: object
       description: Vehicle specifications API response
@@ -197,39 +190,6 @@ components:
           - invalid_vin
           - no_data
           - api_not_enabled
-    RecallItem:
-      type: object
-      description: An NHTSA recall record
-      properties:
-        id:
-          type: string
-          description: Recall identifier
-        date:
-          type: string
-          format: date
-          description: Recall date
-        component:
-          type: string
-          description: Affected vehicle component
-        description:
-          type: string
-          description: Recall description
-        remedy:
-          type: string
-          description: Recall remedy
-    WarrantyItem:
-      type: object
-      description: A vehicle warranty
-      properties:
-        type:
-          type: string
-          description: Warranty type (basic, powertrain, corrosion, etc.)
-        miles:
-          type: integer
-          description: Warranty mileage limit
-        months:
-          type: integer
-          description: Warranty time limit in months
     VehicleSpecAttributes:
       type: object
       description: Standardized vehicle specification attributes
@@ -289,3 +249,43 @@ components:
         msrp:
           type: number
           description: Manufacturer suggested retail price
+    TrimSelection:
+      type: object
+      description: A trim level selection entry
+      properties:
+        id:
+          type: string
+          description: Trim identifier
+          example: 2005_toyota_corolla_ce
+        name:
+          type: string
+          description: Trim name
+          example: CE
+        selected:
+          type: integer
+          description: Whether this trim is selected (1=yes, 0=no)
+        styles:
+          type: array
+          description: Body style variations for this trim
+          items:
+            type: object
+    RecallItem:
+      type: object
+      description: An NHTSA recall record
+      properties:
+        id:
+          type: string
+          description: Recall identifier
+        date:
+          type: string
+          format: date
+          description: Recall date
+        component:
+          type: string
+          description: Affected vehicle component
+        description:
+          type: string
+          description: Recall description
+        remedy:
+          type: string
+          description: Recall remedy

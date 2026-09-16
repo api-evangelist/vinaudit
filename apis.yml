@@ -126,20 +126,6 @@ apis:
     url: openapi/vinaudit-getownershipcost-php-api-openapi.yml
   - type: Documentation
     url: https://www.vinaudit.com/vehicle-history-api
-- aid: vinaudit:vinaudit-marketvalue-api
-  name: VINaudit Marketvalue API
-  description: The Marketvalue API from VINaudit — 1 operation(s) for marketvalue.
-  humanURL: https://www.vinaudit.com/vehicle-history-api
-  baseURL: https://api.vinaudit.com
-  tags:
-  - Market Value
-  tags_raw:
-  - Marketvalue
-  properties:
-  - type: OpenAPI
-    url: openapi/vinaudit-marketvalue-api-openapi.yml
-  - type: Documentation
-    url: https://www.vinaudit.com/vehicle-history-api
 - aid: vinaudit:vinaudit-pullreport-api
   name: VINaudit Pullreport API
   description: The Pullreport API from VINaudit — 1 operation(s) for pullreport.
@@ -198,6 +184,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/vinaudit-specifications-api-openapi.yml
+  - type: Documentation
+    url: https://www.vinaudit.com/vehicle-history-api
+- aid: vinaudit:vinaudit-market-value-api
+  name: VINaudit Market Value API
+  description: The Market Value API from VINaudit — 1 operation(s) for market value.
+  humanURL: https://www.vinaudit.com/vehicle-specifications-api
+  baseURL: https://specifications.vinaudit.com
+  tags:
+  - Market Value
+  properties:
+  - type: OpenAPI
+    url: openapi/vinaudit-market-value-api-openapi.yml
   - type: Documentation
     url: https://www.vinaudit.com/vehicle-history-api
 common:

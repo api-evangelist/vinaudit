@@ -125,6 +125,54 @@ paths:
       - Selections
 components:
   schemas:
+    TrimEntry:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Trim name
+        id:
+          type: string
+          description: Trim identifier
+    MakeEntry:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Make name
+        id:
+          type: string
+          description: Make identifier
+        models:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModelEntry'
+    ModelEntry:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Model name
+        id:
+          type: string
+          description: Model identifier
+        trims:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrimEntry'
+    YearEntry:
+      type: object
+      properties:
+        name:
+          type: integer
+          description: Model year number
+        id:
+          type: string
+          description: Year identifier
+        makes:
+          type: array
+          items:
+            $ref: '#/components/schemas/MakeEntry'
     SelectionsResponse:
       type: object
       description: Vehicle selections API response
@@ -149,51 +197,3 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/TrimEntry'
-    YearEntry:
-      type: object
-      properties:
-        name:
-          type: integer
-          description: Model year number
-        id:
-          type: string
-          description: Year identifier
-        makes:
-          type: array
-          items:
-            $ref: '#/components/schemas/MakeEntry'
-    ModelEntry:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Model name
-        id:
-          type: string
-          description: Model identifier
-        trims:
-          type: array
-          items:
-            $ref: '#/components/schemas/TrimEntry'
-    TrimEntry:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Trim name
-        id:
-          type: string
-          description: Trim identifier
-    MakeEntry:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Make name
-        id:
-          type: string
-          description: Make identifier
-        models:
-          type: array
-          items:
-            $ref: '#/components/schemas/ModelEntry'

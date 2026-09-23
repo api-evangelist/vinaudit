@@ -122,19 +122,6 @@ paths:
       - Specifications
 components:
   schemas:
-    WarrantyItem:
-      type: object
-      description: A vehicle warranty
-      properties:
-        type:
-          type: string
-          description: Warranty type (basic, powertrain, corrosion, etc.)
-        miles:
-          type: integer
-          description: Warranty mileage limit
-        months:
-          type: integer
-          description: Warranty time limit in months
     SpecificationsResponse:
       type: object
       description: Vehicle specifications API response
@@ -190,6 +177,26 @@ components:
           - invalid_vin
           - no_data
           - api_not_enabled
+    RecallItem:
+      type: object
+      description: An NHTSA recall record
+      properties:
+        id:
+          type: string
+          description: Recall identifier
+        date:
+          type: string
+          format: date
+          description: Recall date
+        component:
+          type: string
+          description: Affected vehicle component
+        description:
+          type: string
+          description: Recall description
+        remedy:
+          type: string
+          description: Recall remedy
     VehicleSpecAttributes:
       type: object
       description: Standardized vehicle specification attributes
@@ -269,23 +276,16 @@ components:
           description: Body style variations for this trim
           items:
             type: object
-    RecallItem:
+    WarrantyItem:
       type: object
-      description: An NHTSA recall record
+      description: A vehicle warranty
       properties:
-        id:
+        type:
           type: string
-          description: Recall identifier
-        date:
-          type: string
-          format: date
-          description: Recall date
-        component:
-          type: string
-          description: Affected vehicle component
-        description:
-          type: string
-          description: Recall description
-        remedy:
-          type: string
-          description: Recall remedy
+          description: Warranty type (basic, powertrain, corrosion, etc.)
+        miles:
+          type: integer
+          description: Warranty mileage limit
+        months:
+          type: integer
+          description: Warranty time limit in months

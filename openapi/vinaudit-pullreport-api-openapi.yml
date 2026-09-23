@@ -169,34 +169,23 @@ paths:
       - Pullreport
 components:
   schemas:
-    VehicleAttributes:
+    TitleRecord:
       type: object
-      description: Basic vehicle attributes decoded from VIN
+      description: A single title record entry
       properties:
-        make:
+        date:
           type: string
-          description: Vehicle make
-          example: TOYOTA
-        model:
+          format: date
+          description: Date of title record
+        state:
           type: string
-          description: Vehicle model
-          example: COROLLA CE
-        year:
+          description: Two-letter state code
+        odometer:
+          type: integer
+          description: Odometer reading at time of title
+        brand:
           type: string
-          description: Vehicle model year
-          example: '2005'
-        engine:
-          type: string
-          description: Engine specifications
-        style:
-          type: string
-          description: Vehicle body style
-        made_in:
-          type: string
-          description: Country of manufacture
-        type:
-          type: string
-          description: Vehicle type classification
+          description: Title brand if any
     HistoryReportResponse:
       type: object
       description: Full vehicle history report
@@ -284,20 +273,31 @@ components:
           - incomplete_report
           - expired_report
           - missing_report
-    TitleRecord:
+    VehicleAttributes:
       type: object
-      description: A single title record entry
+      description: Basic vehicle attributes decoded from VIN
       properties:
-        date:
+        make:
           type: string
-          format: date
-          description: Date of title record
-        state:
+          description: Vehicle make
+          example: TOYOTA
+        model:
           type: string
-          description: Two-letter state code
-        odometer:
-          type: integer
-          description: Odometer reading at time of title
-        brand:
+          description: Vehicle model
+          example: COROLLA CE
+        year:
           type: string
-          description: Title brand if any
+          description: Vehicle model year
+          example: '2005'
+        engine:
+          type: string
+          description: Engine specifications
+        style:
+          type: string
+          description: Vehicle body style
+        made_in:
+          type: string
+          description: Country of manufacture
+        type:
+          type: string
+          description: Vehicle type classification

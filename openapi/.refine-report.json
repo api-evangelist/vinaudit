@@ -15,7 +15,9 @@
     "vinaudit-selections-api-openapi.yml",
     "vinaudit-specifications-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
@@ -40,11 +42,13 @@
     "vinaudit-vehicle-specifications-openapi.yml: tagged paths GET /specifications -> Specifications",
     "vinaudit-vehicle-specifications-openapi.yml: tagged paths GET /selections -> Selections",
     "vinaudit-vehicle-specifications-openapi.yml: declared missing tag: Selections",
-    "vinaudit-vehicle-specifications-openapi.yml: declared missing tag: Specifications"
+    "vinaudit-vehicle-specifications-openapi.yml: declared missing tag: Specifications",
+    "superseded outputs removed: vinaudit-market-value-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 11 total)"
   ],
   "skipped": [
     "vinaudit-getownershipcost-php-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "vinaudit-marketvalue-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "vinaudit-market-value-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "vinaudit-pullreport-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "vinaudit-query-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "vinaudit-report-api-openapi.yml: previously refined output, superseded by openapi/_original/",

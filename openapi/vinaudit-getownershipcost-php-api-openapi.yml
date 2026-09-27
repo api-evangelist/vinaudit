@@ -101,14 +101,6 @@ paths:
       - Getownershipcost.php
 components:
   schemas:
-    YearlyCostArray:
-      type: array
-      description: Array of 5 yearly cost values (year 1 through year 5)
-      items:
-        type: number
-        description: Cost in dollars for that year
-      minItems: 5
-      maxItems: 5
     OwnershipCostResponse:
       type: object
       description: 5-year vehicle ownership cost response
@@ -155,3 +147,11 @@ components:
           type: string
           description: Error message or empty string if successful
           example: ''
+    YearlyCostArray:
+      type: array
+      description: Array of 5 yearly cost values (year 1 through year 5)
+      items:
+        type: number
+        description: Cost in dollars for that year
+      minItems: 5
+      maxItems: 5

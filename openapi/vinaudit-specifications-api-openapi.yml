@@ -122,61 +122,6 @@ paths:
       - Specifications
 components:
   schemas:
-    SpecificationsResponse:
-      type: object
-      description: Vehicle specifications API response
-      properties:
-        input:
-          type: object
-          description: Input parameters echoed back
-        selections:
-          type: object
-          description: Available trim and style selections
-          properties:
-            trims:
-              type: array
-              items:
-                $ref: '#/components/schemas/TrimSelection'
-        attributes:
-          $ref: '#/components/schemas/VehicleSpecAttributes'
-        colors:
-          type: array
-          description: Available color options
-          items:
-            type: object
-        equipment:
-          type: array
-          description: Equipment items with availability status
-          items:
-            type: object
-        recalls:
-          type: array
-          description: NHTSA recall records
-          items:
-            $ref: '#/components/schemas/RecallItem'
-        warranties:
-          type: array
-          description: Manufacturer warranty details
-          items:
-            $ref: '#/components/schemas/WarrantyItem'
-        photos:
-          type: array
-          description: Vehicle image URLs
-          items:
-            type: string
-            format: uri
-        success:
-          type: boolean
-          description: Whether specifications data was found
-        error:
-          type: string
-          description: Error code or empty string
-          enum:
-          - ''
-          - invalid_inputs
-          - invalid_vin
-          - no_data
-          - api_not_enabled
     RecallItem:
       type: object
       description: An NHTSA recall record
@@ -256,6 +201,74 @@ components:
         msrp:
           type: number
           description: Manufacturer suggested retail price
+    WarrantyItem:
+      type: object
+      description: A vehicle warranty
+      properties:
+        type:
+          type: string
+          description: Warranty type (basic, powertrain, corrosion, etc.)
+        miles:
+          type: integer
+          description: Warranty mileage limit
+        months:
+          type: integer
+          description: Warranty time limit in months
+    SpecificationsResponse:
+      type: object
+      description: Vehicle specifications API response
+      properties:
+        input:
+          type: object
+          description: Input parameters echoed back
+        selections:
+          type: object
+          description: Available trim and style selections
+          properties:
+            trims:
+              type: array
+              items:
+                $ref: '#/components/schemas/TrimSelection'
+        attributes:
+          $ref: '#/components/schemas/VehicleSpecAttributes'
+        colors:
+          type: array
+          description: Available color options
+          items:
+            type: object
+        equipment:
+          type: array
+          description: Equipment items with availability status
+          items:
+            type: object
+        recalls:
+          type: array
+          description: NHTSA recall records
+          items:
+            $ref: '#/components/schemas/RecallItem'
+        warranties:
+          type: array
+          description: Manufacturer warranty details
+          items:
+            $ref: '#/components/schemas/WarrantyItem'
+        photos:
+          type: array
+          description: Vehicle image URLs
+          items:
+            type: string
+            format: uri
+        success:
+          type: boolean
+          description: Whether specifications data was found
+        error:
+          type: string
+          description: Error code or empty string
+          enum:
+          - ''
+          - invalid_inputs
+          - invalid_vin
+          - no_data
+          - api_not_enabled
     TrimSelection:
       type: object
       description: A trim level selection entry
@@ -276,16 +289,3 @@ components:
           description: Body style variations for this trim
           items:
             type: object
-    WarrantyItem:
-      type: object
-      description: A vehicle warranty
-      properties:
-        type:
-          type: string
-          description: Warranty type (basic, powertrain, corrosion, etc.)
-        miles:
-          type: integer
-          description: Warranty mileage limit
-        months:
-          type: integer
-          description: Warranty time limit in months

@@ -134,6 +134,30 @@ components:
         id:
           type: string
           description: Trim identifier
+    SelectionsResponse:
+      type: object
+      description: Vehicle selections API response
+      properties:
+        selections:
+          type: object
+          description: Available vehicle selections
+          properties:
+            years:
+              type: array
+              items:
+                $ref: '#/components/schemas/YearEntry'
+            makes:
+              type: array
+              items:
+                $ref: '#/components/schemas/MakeEntry'
+            models:
+              type: array
+              items:
+                $ref: '#/components/schemas/ModelEntry'
+            trims:
+              type: array
+              items:
+                $ref: '#/components/schemas/TrimEntry'
     MakeEntry:
       type: object
       properties:
@@ -173,27 +197,3 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MakeEntry'
-    SelectionsResponse:
-      type: object
-      description: Vehicle selections API response
-      properties:
-        selections:
-          type: object
-          description: Available vehicle selections
-          properties:
-            years:
-              type: array
-              items:
-                $ref: '#/components/schemas/YearEntry'
-            makes:
-              type: array
-              items:
-                $ref: '#/components/schemas/MakeEntry'
-            models:
-              type: array
-              items:
-                $ref: '#/components/schemas/ModelEntry'
-            trims:
-              type: array
-              items:
-                $ref: '#/components/schemas/TrimEntry'

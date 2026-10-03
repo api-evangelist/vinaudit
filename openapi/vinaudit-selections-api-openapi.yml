@@ -125,15 +125,19 @@ paths:
       - Selections
 components:
   schemas:
-    TrimEntry:
+    MakeEntry:
       type: object
       properties:
         name:
           type: string
-          description: Trim name
+          description: Make name
         id:
           type: string
-          description: Trim identifier
+          description: Make identifier
+        models:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModelEntry'
     SelectionsResponse:
       type: object
       description: Vehicle selections API response
@@ -158,32 +162,6 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/TrimEntry'
-    MakeEntry:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Make name
-        id:
-          type: string
-          description: Make identifier
-        models:
-          type: array
-          items:
-            $ref: '#/components/schemas/ModelEntry'
-    ModelEntry:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Model name
-        id:
-          type: string
-          description: Model identifier
-        trims:
-          type: array
-          items:
-            $ref: '#/components/schemas/TrimEntry'
     YearEntry:
       type: object
       properties:
@@ -197,3 +175,25 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MakeEntry'
+    TrimEntry:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Trim name
+        id:
+          type: string
+          description: Trim identifier
+    ModelEntry:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Model name
+        id:
+          type: string
+          description: Model identifier
+        trims:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrimEntry'

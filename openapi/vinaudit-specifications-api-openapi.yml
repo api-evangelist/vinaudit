@@ -201,19 +201,26 @@ components:
         msrp:
           type: number
           description: Manufacturer suggested retail price
-    WarrantyItem:
+    TrimSelection:
       type: object
-      description: A vehicle warranty
+      description: A trim level selection entry
       properties:
-        type:
+        id:
           type: string
-          description: Warranty type (basic, powertrain, corrosion, etc.)
-        miles:
+          description: Trim identifier
+          example: 2005_toyota_corolla_ce
+        name:
+          type: string
+          description: Trim name
+          example: CE
+        selected:
           type: integer
-          description: Warranty mileage limit
-        months:
-          type: integer
-          description: Warranty time limit in months
+          description: Whether this trim is selected (1=yes, 0=no)
+        styles:
+          type: array
+          description: Body style variations for this trim
+          items:
+            type: object
     SpecificationsResponse:
       type: object
       description: Vehicle specifications API response
@@ -269,23 +276,16 @@ components:
           - invalid_vin
           - no_data
           - api_not_enabled
-    TrimSelection:
+    WarrantyItem:
       type: object
-      description: A trim level selection entry
+      description: A vehicle warranty
       properties:
-        id:
+        type:
           type: string
-          description: Trim identifier
-          example: 2005_toyota_corolla_ce
-        name:
-          type: string
-          description: Trim name
-          example: CE
-        selected:
+          description: Warranty type (basic, powertrain, corrosion, etc.)
+        miles:
           type: integer
-          description: Whether this trim is selected (1=yes, 0=no)
-        styles:
-          type: array
-          description: Body style variations for this trim
-          items:
-            type: object
+          description: Warranty mileage limit
+        months:
+          type: integer
+          description: Warranty time limit in months

@@ -160,6 +160,33 @@ paths:
       - Market Value
 components:
   schemas:
+    DamageAdjustment:
+      type: object
+      properties:
+        input:
+          type:
+          - string
+          - 'null'
+          description: Known damage type provided
+        adjustment:
+          type: number
+          description: Dollar adjustment applied for damage
+    PriceRange:
+      type: object
+      description: Price range estimates
+      properties:
+        above:
+          type: number
+          description: Above-market price estimate
+          example: 13279.11
+        average:
+          type: number
+          description: Average market price estimate
+          example: 10882.53
+        below:
+          type: number
+          description: Below-market price estimate
+          example: 8485.95
     MarketValueResponse:
       type: object
       description: Vehicle market value API response
@@ -230,6 +257,29 @@ components:
           - invalid_vehicle
           - invalid_request
           - internal_error
+    ConditionAdjustment:
+      type: object
+      properties:
+        input:
+          type:
+          - string
+          - 'null'
+          description: Condition input provided
+        adjustment:
+          type: number
+          description: Dollar adjustment applied for condition
+    MileageAdjustment:
+      type: object
+      properties:
+        adjustment:
+          type: number
+          description: Dollar adjustment applied for mileage
+        average:
+          type: number
+          description: Average mileage for this vehicle
+        input:
+          type: number
+          description: Input mileage used for calculation
     Adjustments:
       type: object
       description: Valuation adjustments applied
@@ -253,53 +303,3 @@ components:
         adjustment:
           type: number
           description: Dollar adjustment applied for history
-    MileageAdjustment:
-      type: object
-      properties:
-        adjustment:
-          type: number
-          description: Dollar adjustment applied for mileage
-        average:
-          type: number
-          description: Average mileage for this vehicle
-        input:
-          type: number
-          description: Input mileage used for calculation
-    ConditionAdjustment:
-      type: object
-      properties:
-        input:
-          type:
-          - string
-          - 'null'
-          description: Condition input provided
-        adjustment:
-          type: number
-          description: Dollar adjustment applied for condition
-    PriceRange:
-      type: object
-      description: Price range estimates
-      properties:
-        above:
-          type: number
-          description: Above-market price estimate
-          example: 13279.11
-        average:
-          type: number
-          description: Average market price estimate
-          example: 10882.53
-        below:
-          type: number
-          description: Below-market price estimate
-          example: 8485.95
-    DamageAdjustment:
-      type: object
-      properties:
-        input:
-          type:
-          - string
-          - 'null'
-          description: Known damage type provided
-        adjustment:
-          type: number
-          description: Dollar adjustment applied for damage

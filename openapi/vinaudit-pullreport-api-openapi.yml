@@ -169,23 +169,6 @@ paths:
       - Pullreport
 components:
   schemas:
-    TitleRecord:
-      type: object
-      description: A single title record entry
-      properties:
-        date:
-          type: string
-          format: date
-          description: Date of title record
-        state:
-          type: string
-          description: Two-letter state code
-        odometer:
-          type: integer
-          description: Odometer reading at time of title
-        brand:
-          type: string
-          description: Title brand if any
     HistoryReportResponse:
       type: object
       description: Full vehicle history report
@@ -301,3 +284,20 @@ components:
         type:
           type: string
           description: Vehicle type classification
+    TitleRecord:
+      type: object
+      description: A single title record entry
+      properties:
+        date:
+          type: string
+          format: date
+          description: Date of title record
+        state:
+          type: string
+          description: Two-letter state code
+        odometer:
+          type: integer
+          description: Odometer reading at time of title
+        brand:
+          type: string
+          description: Title brand if any

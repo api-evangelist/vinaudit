@@ -171,6 +171,29 @@ components:
         adjustment:
           type: number
           description: Dollar adjustment applied for damage
+    MileageAdjustment:
+      type: object
+      properties:
+        adjustment:
+          type: number
+          description: Dollar adjustment applied for mileage
+        average:
+          type: number
+          description: Average mileage for this vehicle
+        input:
+          type: number
+          description: Input mileage used for calculation
+    HistoryAdjustment:
+      type: object
+      properties:
+        records:
+          type: array
+          description: Relevant history records
+          items:
+            type: object
+        adjustment:
+          type: number
+          description: Dollar adjustment applied for history
     PriceRange:
       type: object
       description: Price range estimates
@@ -268,18 +291,6 @@ components:
         adjustment:
           type: number
           description: Dollar adjustment applied for condition
-    MileageAdjustment:
-      type: object
-      properties:
-        adjustment:
-          type: number
-          description: Dollar adjustment applied for mileage
-        average:
-          type: number
-          description: Average mileage for this vehicle
-        input:
-          type: number
-          description: Input mileage used for calculation
     Adjustments:
       type: object
       description: Valuation adjustments applied
@@ -292,14 +303,3 @@ components:
           $ref: '#/components/schemas/ConditionAdjustment'
         known_damage:
           $ref: '#/components/schemas/DamageAdjustment'
-    HistoryAdjustment:
-      type: object
-      properties:
-        records:
-          type: array
-          description: Relevant history records
-          items:
-            type: object
-        adjustment:
-          type: number
-          description: Dollar adjustment applied for history

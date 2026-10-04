@@ -122,26 +122,26 @@ paths:
       - Specifications
 components:
   schemas:
-    RecallItem:
+    TrimSelection:
       type: object
-      description: An NHTSA recall record
+      description: A trim level selection entry
       properties:
         id:
           type: string
-          description: Recall identifier
-        date:
+          description: Trim identifier
+          example: 2005_toyota_corolla_ce
+        name:
           type: string
-          format: date
-          description: Recall date
-        component:
-          type: string
-          description: Affected vehicle component
-        description:
-          type: string
-          description: Recall description
-        remedy:
-          type: string
-          description: Recall remedy
+          description: Trim name
+          example: CE
+        selected:
+          type: integer
+          description: Whether this trim is selected (1=yes, 0=no)
+        styles:
+          type: array
+          description: Body style variations for this trim
+          items:
+            type: object
     VehicleSpecAttributes:
       type: object
       description: Standardized vehicle specification attributes
@@ -201,26 +201,19 @@ components:
         msrp:
           type: number
           description: Manufacturer suggested retail price
-    TrimSelection:
+    WarrantyItem:
       type: object
-      description: A trim level selection entry
+      description: A vehicle warranty
       properties:
-        id:
+        type:
           type: string
-          description: Trim identifier
-          example: 2005_toyota_corolla_ce
-        name:
-          type: string
-          description: Trim name
-          example: CE
-        selected:
+          description: Warranty type (basic, powertrain, corrosion, etc.)
+        miles:
           type: integer
-          description: Whether this trim is selected (1=yes, 0=no)
-        styles:
-          type: array
-          description: Body style variations for this trim
-          items:
-            type: object
+          description: Warranty mileage limit
+        months:
+          type: integer
+          description: Warranty time limit in months
     SpecificationsResponse:
       type: object
       description: Vehicle specifications API response
@@ -276,16 +269,23 @@ components:
           - invalid_vin
           - no_data
           - api_not_enabled
-    WarrantyItem:
+    RecallItem:
       type: object
-      description: A vehicle warranty
+      description: An NHTSA recall record
       properties:
-        type:
+        id:
           type: string
-          description: Warranty type (basic, powertrain, corrosion, etc.)
-        miles:
-          type: integer
-          description: Warranty mileage limit
-        months:
-          type: integer
-          description: Warranty time limit in months
+          description: Recall identifier
+        date:
+          type: string
+          format: date
+          description: Recall date
+        component:
+          type: string
+          description: Affected vehicle component
+        description:
+          type: string
+          description: Recall description
+        remedy:
+          type: string
+          description: Recall remedy

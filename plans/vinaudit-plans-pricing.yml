@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 name: VINaudit API Plans and Pricing
 description: Pricing plans and tiers for VINaudit vehicle data APIs. VINaudit offers
   pay-per-report and subscription-based pricing with modular licensing allowing customers
@@ -86,3 +90,36 @@ notes:
   - Pricing details not fully published; contact VINaudit for current API plan rates
   - Demo/trial accounts available on request
   - contact: https://www.vinaudit.com/vehicle-data-api
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - metered
+  - negotiated
+  - subscription
+  units: []
+  plans:
+  - name: Consumer Report Packages
+    access: other
+    model: metered
+    model_how: stated
+    units: []
+    periods: []
+  - name: Dealer Subscription
+    access: other
+    model: subscription
+    model_how: stated
+    units: []
+    periods: []
+  - name: API Pay-Per-Report
+    access: other
+    model: metered
+    model_how: stated
+    units: []
+    periods: []
+  - name: API Enterprise/Custom
+    access: negotiated
+    model: negotiated
+    model_how: stated
+    units: []
+    periods: []

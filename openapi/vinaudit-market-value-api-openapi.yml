@@ -160,6 +160,40 @@ paths:
       - Market Value
 components:
   schemas:
+    Adjustments:
+      type: object
+      description: Valuation adjustments applied
+      properties:
+        mileage:
+          $ref: '#/components/schemas/MileageAdjustment'
+        history:
+          $ref: '#/components/schemas/HistoryAdjustment'
+        condition:
+          $ref: '#/components/schemas/ConditionAdjustment'
+        known_damage:
+          $ref: '#/components/schemas/DamageAdjustment'
+    ConditionAdjustment:
+      type: object
+      properties:
+        input:
+          type:
+          - string
+          - 'null'
+          description: Condition input provided
+        adjustment:
+          type: number
+          description: Dollar adjustment applied for condition
+    HistoryAdjustment:
+      type: object
+      properties:
+        records:
+          type: array
+          description: Relevant history records
+          items:
+            type: object
+        adjustment:
+          type: number
+          description: Dollar adjustment applied for history
     DamageAdjustment:
       type: object
       properties:
@@ -183,17 +217,6 @@ components:
         input:
           type: number
           description: Input mileage used for calculation
-    HistoryAdjustment:
-      type: object
-      properties:
-        records:
-          type: array
-          description: Relevant history records
-          items:
-            type: object
-        adjustment:
-          type: number
-          description: Dollar adjustment applied for history
     PriceRange:
       type: object
       description: Price range estimates
@@ -280,26 +303,3 @@ components:
           - invalid_vehicle
           - invalid_request
           - internal_error
-    ConditionAdjustment:
-      type: object
-      properties:
-        input:
-          type:
-          - string
-          - 'null'
-          description: Condition input provided
-        adjustment:
-          type: number
-          description: Dollar adjustment applied for condition
-    Adjustments:
-      type: object
-      description: Valuation adjustments applied
-      properties:
-        mileage:
-          $ref: '#/components/schemas/MileageAdjustment'
-        history:
-          $ref: '#/components/schemas/HistoryAdjustment'
-        condition:
-          $ref: '#/components/schemas/ConditionAdjustment'
-        known_damage:
-          $ref: '#/components/schemas/DamageAdjustment'

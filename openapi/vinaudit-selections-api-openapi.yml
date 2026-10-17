@@ -125,6 +125,28 @@ paths:
       - Selections
 components:
   schemas:
+    MakeEntry:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Make name
+        id:
+          type: string
+          description: Make identifier
+        models:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModelEntry'
+    TrimEntry:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Trim name
+        id:
+          type: string
+          description: Trim identifier
     SelectionsResponse:
       type: object
       description: Vehicle selections API response
@@ -149,32 +171,6 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/TrimEntry'
-    MakeEntry:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Make name
-        id:
-          type: string
-          description: Make identifier
-        models:
-          type: array
-          items:
-            $ref: '#/components/schemas/ModelEntry'
-    YearEntry:
-      type: object
-      properties:
-        name:
-          type: integer
-          description: Model year number
-        id:
-          type: string
-          description: Year identifier
-        makes:
-          type: array
-          items:
-            $ref: '#/components/schemas/MakeEntry'
     ModelEntry:
       type: object
       properties:
@@ -188,12 +184,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TrimEntry'
-    TrimEntry:
+    YearEntry:
       type: object
       properties:
         name:
-          type: string
-          description: Trim name
+          type: integer
+          description: Model year number
         id:
           type: string
-          description: Trim identifier
+          description: Year identifier
+        makes:
+          type: array
+          items:
+            $ref: '#/components/schemas/MakeEntry'

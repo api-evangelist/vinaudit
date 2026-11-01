@@ -64,37 +64,167 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Vehicle history and VIN decoding REST API for accessing accident records, title information, mileage history, ownership records, and NHTSA recall data for any US vehicle. VINaudit is an NMVTIS-approved data provider founded in 2011, headquartered in Kirkland, Washington.
+Vehicle history and VIN decoding REST API for accessing accident records, title information, mileage history, ownership records, and NHTSA recall data for any US vehicle. VINaudit is an NMVTIS-approved data provider offering vehicle history, specifications, market value, ownership cost, and vehicle image APIs.
 
-## APIs
+**Areas:** Vehicle History · VIN Decoding · Automotive · NMVTIS · Vehicle Specifications · Market Value · Recall Data · REST
 
-- **Vehicle History API** - Raw vehicle history data from NMVTIS covering title records, odometer readings, accident records, salvage information, and theft records for US and Canada vehicles
-- **Vehicle Specifications API** - Standardized vehicle specifications by VIN or YMMT including engine, transmission, fuel economy, dimensions, colors, equipment, recalls, warranties, and photos
-- **Vehicle Market Value API** - Current market value estimates using aggregated data from millions of recent sale listings with low, average, and high-end values
-- **Vehicle Ownership Cost API** - 5-year total cost of ownership calculations by VIN covering depreciation, insurance, fuel, maintenance, repairs, and taxes
-- **Vehicle Image API (Beta)** - Original stock vehicle images by make, model, year, and trim
+## VINaudit on APIs.io
 
-## API Endpoints
+Everything profiled for VINaudit is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/vinaudit/](https://apis.io/providers/vinaudit/)** — or go straight to one of the APIs or properties below.
 
-- `https://api.vinaudit.com/v2/query` - Query VIN records
-- `https://api.vinaudit.com/v2/pullreport` - Generate vehicle history report
-- `https://api.vinaudit.com/v2/report` - View generated report
-- `https://specifications.vinaudit.com/v3/specifications` - Vehicle specifications
-- `https://specifications.vinaudit.com/v3/selections` - Vehicle selections
+### APIs (11)
 
-## Authentication
+- [VINaudit Vehicle Specifications API](https://apis.io/apis/vinaudit/vinaudit-vehicle-specifications-api/) — Retrieve standardized vehicle specifications by VIN or year/make/model/trim including engine details, transmission, fuel economy, dimensions, colors,…
+- [VINaudit Vehicle Market Value API](https://apis.io/apis/vinaudit/vinaudit-vehicle-market-value-api/) — Estimate the current market value of a vehicle using aggregated data from millions of recent sale listings, returning low, average, and high-end values with…
+- [VINaudit Vehicle Ownership Cost API](https://apis.io/apis/vinaudit/vinaudit-vehicle-ownership-cost-api/) — Calculate 5-year total cost of ownership by VIN, factoring in depreciation, insurance, fuel, maintenance, repairs, and taxes.
+- [VINaudit Vehicle Image API](https://apis.io/apis/vinaudit/vinaudit-vehicle-image-api/) — Access original stock vehicle images by make, model, year, and trim. Beta API providing clean, professional car images retrieved by VIN or year/make/model/trim.
+- [VINaudit Getownershipcost.php API](https://apis.io/apis/vinaudit/vinaudit-getownershipcost-php-api/) — The Getownershipcost.php API from VINaudit — 1 operation(s) for getownershipcost.php.
+- [VINaudit Pullreport API](https://apis.io/apis/vinaudit/vinaudit-pullreport-api/) — The Pullreport API from VINaudit — 1 operation(s) for pullreport.
+- [VINaudit Query API](https://apis.io/apis/vinaudit/vinaudit-query-api/) — The Query API from VINaudit — 1 operation(s) for query.
+- [VINaudit Report API](https://apis.io/apis/vinaudit/vinaudit-report-api/) — The Report API from VINaudit — 1 operation(s) for report.
+- [VINaudit Selections API](https://apis.io/apis/vinaudit/vinaudit-selections-api/) — The Selections API from VINaudit — 1 operation(s) for selections.
+- [VINaudit Specifications API](https://apis.io/apis/vinaudit/vinaudit-specifications-api/) — The Specifications API from VINaudit — 1 operation(s) for specifications.
+- [VINaudit Market Value API](https://apis.io/apis/vinaudit/vinaudit-market-value-api/) — The Market Value API from VINaudit — 1 operation(s) for market value.
 
-API key-based authentication. Keys are generated from the VINaudit members dashboard after account registration. Pass the key as a `key` query parameter in all requests. A demo key (`VA_DEMO_KEY`) is available for testing.
+### Published properties
 
-## Links
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Vinaudit Agentic Access](https://apis.io/agentic-access/vinaudit/vinaudit-agentic-access/)
+
+#### JSON Schema (4)
+
+The data models the API reads and writes.
+
+- [VINaudit Vehicle History Report](https://apis.io/schemas/vinaudit/vinaudit-vehicle-history/)
+- [VINaudit Vehicle Market Value](https://apis.io/schemas/vinaudit/vinaudit-vehicle-market-value/)
+- [VINaudit Vehicle Ownership Cost](https://apis.io/schemas/vinaudit/vinaudit-vehicle-ownership-cost/)
+- [VINaudit Vehicle Specifications](https://apis.io/schemas/vinaudit/vinaudit-vehicle-specifications/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Vinaudit Context](https://apis.io/jsonld/vinaudit/vinaudit-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [VINaudit API Vocabulary](https://apis.io/vocabularies/vinaudit/vinaudit-vocabulary/)
+
+#### Examples (3)
+
+Example requests and responses.
+
+- [Vinaudit Market Value Example](https://apis.io/examples/vinaudit/vinaudit-market-value-example/)
+- [Vinaudit Query Vin Example](https://apis.io/examples/vinaudit/vinaudit-query-vin-example/)
+- [Vinaudit Vehicle Specifications Example](https://apis.io/examples/vinaudit/vinaudit-vehicle-specifications-example/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [VINaudit Vehicle History Getownershipcost.php API](https://apis.io/collections/vinaudit/open-vinaudit-getownershipcost-php-api/)
+- [VINaudit Vehicle History Getownershipcost.php Marketvalue API](https://apis.io/collections/vinaudit/open-vinaudit-marketvalue-api/)
+- [VINaudit Vehicle History Getownershipcost.php Pullreport API](https://apis.io/collections/vinaudit/open-vinaudit-pullreport-api/)
+- [VINaudit Vehicle History Getownershipcost.php Query API](https://apis.io/collections/vinaudit/open-vinaudit-query-api/)
+- [VINaudit Vehicle History Getownershipcost.php Report API](https://apis.io/collections/vinaudit/open-vinaudit-report-api/)
+- [VINaudit Vehicle History Getownershipcost.php Selections API](https://apis.io/collections/vinaudit/open-vinaudit-selections-api/)
+- [VINaudit Vehicle History Getownershipcost.php Specifications API](https://apis.io/collections/vinaudit/open-vinaudit-specifications-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [VINaudit — jsonschema rules](https://apis.io/rules/vinaudit/vinaudit-jsonschema-spectral-rules/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Vinaudit Domain Security](https://apis.io/security/vinaudit/vinaudit-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Vinaudit Plans Pricing](https://apis.io/plans/vinaudit/vinaudit-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Vinaudit Rate Limits](https://apis.io/rate-limits/vinaudit/vinaudit-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Vinaudit Finops](https://apis.io/finops/vinaudit/vinaudit-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.vinaudit.com)
-- [Developer Guide](https://www.vinaudit.com/vin-api-developers-guide)
-- [Vehicle Data API](https://www.vinaudit.com/vehicle-data-api)
+- [Documentation](https://www.vinaudit.com/vehicle-data-api)
+- [Pricing](https://www.vinaudit.com/affordable-vs-premium-vehicle-history-api)
 - [Blog](https://www.vinaudit.com/blog)
-- [LinkedIn](https://www.linkedin.com/company/vinaudit)
-- [X / Twitter](https://twitter.com/vinauditllc)
 
-## APIs.json
+## API Evangelist rating
 
-This repository contains an [APIs.json](apis.yml) index file cataloging VINaudit's public APIs, along with supporting documentation for pricing plans, rate limits, and FinOps guidance.
+**Kin Score 25.4** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 51.1 |
+| Contract governance | 9.8 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 11.9 |
+| Access clarity | 7.9 |
+
+**Agent readiness 20.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/vinaudit/](https://apis.io/providers/vinaudit/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for VINaudit: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/vinaudit/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
